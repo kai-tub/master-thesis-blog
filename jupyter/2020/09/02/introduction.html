@@ -4,30 +4,34 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Search | Kais Machine Learning Master Thesis Blog</title>
+<title>Introduction to grayscale images | Kais Machine Learning Master Thesis Blog</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Search" />
+<meta property="og:title" content="Introduction to grayscale images" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Remote image sensing and self-supervision master thesis blog" />
-<meta property="og:description" content="Remote image sensing and self-supervision master thesis blog" />
-<link rel="canonical" href="https://kai-tub.github.io/master-thesis-blog/search/" />
-<meta property="og:url" content="https://kai-tub.github.io/master-thesis-blog/search/" />
+<meta name="description" content="A short introduction to grayscale images and how they are encoded on the computer." />
+<meta property="og:description" content="A short introduction to grayscale images and how they are encoded on the computer." />
+<link rel="canonical" href="https://kai-tub.github.io/master-thesis-blog/jupyter/2020/09/02/introduction.html" />
+<meta property="og:url" content="https://kai-tub.github.io/master-thesis-blog/jupyter/2020/09/02/introduction.html" />
 <meta property="og:site_name" content="Kais Machine Learning Master Thesis Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-02T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Remote image sensing and self-supervision master thesis blog","@type":"WebPage","headline":"Search","url":"https://kai-tub.github.io/master-thesis-blog/search/","@context":"https://schema.org"}</script>
+{"description":"A short introduction to grayscale images and how they are encoded on the computer.","@type":"BlogPosting","headline":"Introduction to grayscale images","url":"https://kai-tub.github.io/master-thesis-blog/jupyter/2020/09/02/introduction.html","datePublished":"2020-09-02T00:00:00-05:00","dateModified":"2020-09-02T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://kai-tub.github.io/master-thesis-blog/jupyter/2020/09/02/introduction.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/master-thesis-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://kai-tub.github.io/master-thesis-blog/feed.xml" title="Kais Machine Learning Master Thesis Blog" /><link rel="shortcut icon" type="image/x-icon" href="/master-thesis-blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Search | Kais Machine Learning Master Thesis Blog</title>
+<title>Introduction to grayscale images | Kais Machine Learning Master Thesis Blog</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Search" />
+<meta property="og:title" content="Introduction to grayscale images" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Remote image sensing and self-supervision master thesis blog" />
-<meta property="og:description" content="Remote image sensing and self-supervision master thesis blog" />
-<link rel="canonical" href="https://kai-tub.github.io/master-thesis-blog/search/" />
-<meta property="og:url" content="https://kai-tub.github.io/master-thesis-blog/search/" />
+<meta name="description" content="A short introduction to grayscale images and how they are encoded on the computer." />
+<meta property="og:description" content="A short introduction to grayscale images and how they are encoded on the computer." />
+<link rel="canonical" href="https://kai-tub.github.io/master-thesis-blog/jupyter/2020/09/02/introduction.html" />
+<meta property="og:url" content="https://kai-tub.github.io/master-thesis-blog/jupyter/2020/09/02/introduction.html" />
 <meta property="og:site_name" content="Kais Machine Learning Master Thesis Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-02T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Remote image sensing and self-supervision master thesis blog","@type":"WebPage","headline":"Search","url":"https://kai-tub.github.io/master-thesis-blog/search/","@context":"https://schema.org"}</script>
+{"description":"A short introduction to grayscale images and how they are encoded on the computer.","@type":"BlogPosting","headline":"Introduction to grayscale images","url":"https://kai-tub.github.io/master-thesis-blog/jupyter/2020/09/02/introduction.html","datePublished":"2020-09-02T00:00:00-05:00","dateModified":"2020-09-02T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://kai-tub.github.io/master-thesis-blog/jupyter/2020/09/02/introduction.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -96,18 +100,92 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <!-- adapted from https://github.com/pmarsceill/just-the-docs -->
-<script type="text/javascript" src="/master-thesis-blog/assets/js/search.js"></script>
-<script type="text/javascript" src="/master-thesis-blog/assets/js/vendor/lunr.min.js"></script>
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-<div class="search">
-    <div class="search-input-wrap">
-    <input type="text" class="js-search-input search-input input-block form-control" tabindex="0" placeholder="Search Kais Machine Learning Master Thesis Blog" aria-label="Search Kais Machine Learning Master Thesis Blog" autocomplete="off">
-    </div>
-    <br>
-    <div class="js-search-results search-results-wrap"></div>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Introduction to grayscale images</h1><p class="page-description">A short introduction to grayscale images and how they are encoded on the computer.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-02T00:00:00-05:00" itemprop="datePublished">
+        Sep 2, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/master-thesis-blog/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/kai-tub/master-thesis-blog/tree/master/_notebooks/2020-09-02-introduction.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/master-thesis-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
 </div>
 
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/kai-tub/master-thesis-blog/master?filepath=_notebooks%2F2020-09-02-introduction.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/master-thesis-blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/kai-tub/master-thesis-blog/blob/master/_notebooks/2020-09-02-introduction.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/master-thesis-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-09-02-introduction.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>[^1] A quick refresher on how to translate binary numbers to unsigned integers can be found on <a href="https://ryanstutorials.net/binary-tutorial/">ryanstutorials</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="kai-tub/master-thesis-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/master-thesis-blog/jupyter/2020/09/02/introduction.html" hidden></a>
+</article>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/master-thesis-blog/"></data>
