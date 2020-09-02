@@ -1,3 +1,8 @@
 {
-    "python.pythonPath": "/usr/bin/python3.7"
+    "python.pythonPath": "/home/kai/miniconda3/envs/fastai/bin/python",
+    "python.dataScience.jupyterServerURI": "http://172.83.12.245:8888?token=3b237a4eea7fad5ce679427415fa2f8d75de0ac716876a47",
+    "grammarly.userWords": [
+        "fastai",
+        "toc"
+    ]
 }

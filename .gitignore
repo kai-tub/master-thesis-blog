@@ -1,4 +1,6 @@
 *.swp
+tmp/
+.vscode/
 ~*
 *~
 _site
