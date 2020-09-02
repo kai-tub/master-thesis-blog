@@ -205,8 +205,17 @@ If all bits are 0 the corresponding value is 0.
 </h2>
 <p>Images, like everything in a computer, are also only encoded in binary values.
 The simplest images are grayscale images. The possible colors of each pixel of grayscale images only range from black to gray to white, with all different gray shades in-between. 
-<em>Pixels</em> are the basic elements of a picture. The word itself, <a href="https://en.wikipedia.org/wiki/Pixel#Etymology">pixel</a>, is a combination of the words picture and element/cell. So an image consists of pixels similar to how a brick wall consists of bricks.
-<!-- Image of a brick wall --></p>
+<em>Pixels</em> are the basic elements of a picture. The word itself, <a href="https://en.wikipedia.org/wiki/Pixel#Etymology">pixel</a>, is a combination of the words picture and element/cell. So an image consists of pixels similar to how a brick wall consists of bricks.</p>
+<table align="center">
+  <tr>
+    <td><img src="2020-09-02/brick.jpg" width="224" height="224"></td>
+    <td><img src="2020-09-02/brick-wall.jpg" width="224" height="224"></td>
+  </tr>
+  <tr>
+     <td align="center">Pixel</td>
+     <td align="center">Full Image</td>
+  </tr>
+ </table>
 <p>With the knowledge of our previous simple encoding scheme, we can understand how simply 8-bit grayscale images are encoded.
 The 8-bit refers to the <a href="https://en.wikipedia.org/wiki/Color_depth"><em>color-depth</em></a>. It indicates how many bits are used per channel.
 For a grayscale image, we only have a single channel, the channel ranging from black to white. (We will take a closer look at different channels in the next post.)
