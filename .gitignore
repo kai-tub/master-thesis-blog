@@ -15,3 +15,5 @@ _notebooks/.ipynb_checkpoints
 .tweet-cache
 __pycache__
 settings.ini
+*Zone.Identifier*
+images/copied_from_nb/
