@@ -206,17 +206,42 @@ If all bits are 0 the corresponding value is 0.
 <p>Images, like everything in a computer, are also only encoded in binary values.
 The simplest images are grayscale images. The possible colors of each pixel of grayscale images only range from black to gray to white, with all different gray shades in-between. 
 <em>Pixels</em> are the basic elements of a picture. The word itself, <a href="https://en.wikipedia.org/wiki/Pixel#Etymology">pixel</a>, is a combination of the words picture and element/cell. So an image consists of pixels similar to how a brick wall consists of bricks.</p>
-<table align="center">
-  <tr>
-    <td><img src="2020-09-02/brick.jpg" width="224" height="224"></td>
-    <td><img src="2020-09-02/brick-wall.jpg" width="224" height="224"></td>
-  </tr>
-  <tr>
-     <td align="center">Pixel</td>
-     <td align="center">Full Image</td>
-  </tr>
- </table>
-<p>With the knowledge of our previous simple encoding scheme, we can understand how simply 8-bit grayscale images are encoded.
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure>
+    <div style="display:flex">
+        <div>
+            <figure style="flex:1">
+<figure>
+  
+    <img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-09-02/brick.jpg" alt="">
+    
+    
+</figure>
+
+                <figcaption><center>Pixel</center></figcaption>
+            </figure>
+        </div>
+        <div>
+            <figure style="flex:1">
+<figure>
+  
+    <img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-09-02/brick-wall.jpg" alt="">
+    
+    
+</figure>
+
+                <figcaption><center>Complete Image</center></figcaption>
+            </figure>
+        </div>
+    </div>
+    <figcaption><center>My weird analogy</center></figcaption>
+</figure><p>With the knowledge of our previous simple encoding scheme, we can understand how simply 8-bit grayscale images are encoded.
 The 8-bit refers to the <a href="https://en.wikipedia.org/wiki/Color_depth"><em>color-depth</em></a>. It indicates how many bits are used per channel.
 For a grayscale image, we only have a single channel, the channel ranging from black to white. (We will take a closer look at different channels in the next post.)
 For now, we note that our grayscale channel is encoded with 8-bits. Or, but differently, we use 8-bits for every pixel to show different shades of gray. With 8-bits we can color each pixel in 256 (2⁸) different ways.
