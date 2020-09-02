@@ -4,8 +4,6 @@ title: About Me
 permalink: /about/
 ---
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
+Check out my main *About me* page here:
 
-
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+https://kai-tub.github.io/about
