@@ -214,9 +214,9 @@ The simplest images are grayscale images. The possible colors of each pixel of g
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <figure>
-    <div style="display:flex">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center">
         <div>
-            <figure style="flex:1">
+            <figure>
 <figure>
   
     <img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-09-02/brick.jpg" alt="">
@@ -224,11 +224,11 @@ The simplest images are grayscale images. The possible colors of each pixel of g
     
 </figure>
 
-                <figcaption><center>Pixel</center></figcaption>
+            <figcaption><center>Pixel</center></figcaption>
             </figure>
         </div>
         <div>
-            <figure style="flex:1">
+            <figure>
 <figure>
   
     <img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-09-02/brick-wall.jpg" alt="">
@@ -236,12 +236,12 @@ The simplest images are grayscale images. The possible colors of each pixel of g
     
 </figure>
 
-                <figcaption><center>Complete Image</center></figcaption>
+            <figcaption><center>Complete Image</center></figcaption>
             </figure>
         </div>
     </div>
     <figcaption><center>My weird analogy</center></figcaption>
-</figure><p>With the knowledge of our previous simple encoding scheme, we can understand how simply 8-bit grayscale images are encoded.
+</figure><p>With the knowledge of our previous simple encoding scheme, we can understand how simple 8-bit grayscale images are encoded.
 The 8-bit refers to the <a href="https://en.wikipedia.org/wiki/Color_depth"><em>color-depth</em></a>. It indicates how many bits are used per channel.
 For a grayscale image, we only have a single channel, the channel ranging from black to white. (We will take a closer look at different channels in the next post.)
 For now, we note that our grayscale channel is encoded with 8-bits. Or, but differently, we use 8-bits for every pixel to show different shades of gray. With 8-bits we can color each pixel in 256 (2⁸) different ways.
