@@ -218,7 +218,7 @@ The most straightforward images are grayscale images. The possible colors of eac
             <figure>
 <figure>
   
-    <img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-09-02/brick.jpg" alt="">
+    <img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-09-02/brick.jpg" alt="Brick">
     
     
 </figure>
@@ -230,7 +230,7 @@ The most straightforward images are grayscale images. The possible colors of eac
             <figure>
 <figure>
   
-    <img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-09-02/brick-wall.jpg" alt="">
+    <img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-09-02/brick-wall.jpg" alt="Brick Wall">
     
     
 </figure>
@@ -269,7 +269,7 @@ we can easily create our own 8-bit grayscale image by merely changing the value 
     <span class="n">grayscale_8_bit_mode</span> <span class="o">=</span> <span class="s2">"L"</span>
     <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">grayscale_8_bit_mode</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">upscale_image</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">img_width</span><span class="o">=</span><span class="mi">224</span><span class="p">,</span> <span class="n">img_height</span><span class="o">=</span><span class="mi">224</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">upscale_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">img_width</span><span class="o">=</span><span class="mi">224</span><span class="p">,</span> <span class="n">img_height</span><span class="o">=</span><span class="mi">224</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">img_width</span><span class="p">,</span> <span class="n">img_height</span><span class="p">),</span> <span class="n">resample</span><span class="o">=</span><span class="n">Image</span><span class="o">.</span><span class="n">NEAREST</span><span class="p">)</span>
 
 <span class="c1"># PIL requires np arrays as input</span>
