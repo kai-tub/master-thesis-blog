@@ -1,0 +1,250 @@
+% Encoding: UTF-8
+
+@InProceedings{Kolesnikov2019,
+  author    = {Alexander Kolesnikov and Xiaohua Zhai and Lucas Beyer},
+  booktitle = {2019 {IEEE}/{CVF} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+  title     = {{Revisiting Self-Supervised Visual Representation Learning}},
+  publisher = {{IEEE}},
+  url       = {https://arxiv.org/pdf/1901.09005.pdf},
+  month     = {jun},
+  year      = {2019},
+}
+
+@Article{Jing2020,
+  author    = {Longlong Jing and Yingli Tian},
+  title     = {Self-supervised Visual Feature Learning with Deep Neural Networks: A Survey},
+  url       = {https://arxiv.org/pdf/1902.06162.pdf},
+  journal   = {{IEEE} Transactions on Pattern Analysis and Machine Intelligence},
+  publisher = {Institute of Electrical and Electronics Engineers ({IEEE})},
+  year      = {2020},
+}
+
+@Article{Caron2018,
+  author       = {Mathilde Caron and Piotr Bojanowski and Armand Joulin and Matthijs Douze},
+  title        = {Deep Clustering for Unsupervised Learning of Visual Features},
+  pages        = {139-156},
+  abstract     = {Clustering is a class of unsupervised learning methods that has been extensively applied and studied in computer vision. Little work has been done to adapt it to the end-to-end training of visual features on large scale datasets. In this work, we present DeepCluster, a clustering method that jointly learns the parameters of a neural network and the cluster assignments of the resulting features. DeepCluster iteratively groups the features with a standard clustering algorithm, k-means, and uses the subsequent assignments as supervision to update the weights of the network. We apply DeepCluster to the unsupervised training of convolutional neural networks on large datasets like ImageNet and YFCC100M. The resulting model outperforms the current state of the art by a significant margin on all the standard benchmarks.},
+  date         = {2018-07-15},
+  journaltitle = {Computer Vision – ECCV 2018},
+  url          = {http://arxiv.org/pdf/1807.05520v2},
+}
+
+@Article{Bojanowski2017,
+  author       = {Piotr Bojanowski and Armand Joulin},
+  date         = {2017-04-18},
+  journaltitle = {ICML},
+  title        = {Unsupervised Learning by Predicting Noise},
+  url          = {http://arxiv.org/pdf/1704.05310v1},
+  abstract     = {Convolutional neural networks provide visual features that perform remarkably well in many computer vision applications. However, training these networks requires significant amounts of supervision. This paper introduces a generic framework to train deep networks, end-to-end, with no supervision. We propose to fix a set of target representations, called Noise As Targets (NAT), and to constrain the deep features to align to them. This domain agnostic approach avoids the standard unsupervised learning issues of trivial solutions and collapsing of features. Thanks to a stochastic batch reassignment strategy and a separable square loss function, it scales to millions of images. The proposed approach produces representations that perform on par with state-of-the-art unsupervised methods on ImageNet and Pascal VOC.},
+}
+
+@Article{Doersch2015,
+  author       = {Carl Doersch and Abhinav Gupta and Alexei A. Efros},
+  date         = {2015-05-19},
+  journaltitle = {ICCV},
+  title        = {Unsupervised Visual Representation Learning by Context Prediction},
+  url          = {http://arxiv.org/pdf/1505.05192v3},
+  abstract     = {This work explores the use of spatial context as a source of free and plentiful supervisory signal for training a rich visual representation. Given only a large, unlabeled image collection, we extract random pairs of patches from each image and train a convolutional neural net to predict the position of the second patch relative to the first. We argue that doing well on this task requires the model to learn to recognize objects and their parts. We demonstrate that the feature representation learned using this within-image context indeed captures visual similarity across images. For example, this representation allows us to perform unsupervised visual discovery of objects like cats, people, and even birds from the Pascal VOC 2011 detection dataset. Furthermore, we show that the learned ConvNet can be used in the R-CNN framework and provides a significant boost over a randomly-initialized ConvNet, resulting in state-of-the-art performance among algorithms which use only Pascal-provided training set annotations.},
+}
+
+@Article{Noroozi2016,
+  author       = {Mehdi Noroozi and Paolo Favaro},
+  date         = {2016-03-30},
+  journaltitle = {ECCV},
+  title        = {Unsupervised Learning of Visual Representations by Solving Jigsaw Puzzles},
+  url          = {http://arxiv.org/pdf/1603.09246v3},
+  abstract     = {In this paper we study the problem of image representation learning without human annotation. By following the principles of self-supervision, we build a convolutional neural network (CNN) that can be trained to solve Jigsaw puzzles as a pretext task, which requires no manual labeling, and then later repurposed to solve object classification and detection. To maintain the compatibility across tasks we introduce the context-free network (CFN), a siamese-ennead CNN. The CFN takes image tiles as input and explicitly limits the receptive field (or context) of its early processing units to one tile at a time. We show that the CFN includes fewer parameters than AlexNet while preserving the same semantic learning capabilities. By training the CFN to solve Jigsaw puzzles, we learn both a feature mapping of object parts as well as their correct spatial arrangement. Our experimental evaluations show that the learned features capture semantically relevant content. Our proposed method for learning visual representations outperforms state of the art methods in several transfer learning benchmarks.},
+}
+
+@Article{Sande2010,
+  author    = {Koen E. A. van de Sande and Theo Gevers and Cees G. M. Snoek},
+  title     = {Evaluating Color Descriptors for Object and Scene Recognition},
+  volume    = {32},
+  number    = {9},
+  pages     = {1582--1596},
+  doi       = {10.1109/tpami.2009.154},
+  journal   = {{IEEE} Transactions on Pattern Analysis and Machine Intelligence},
+  month     = {9},
+  publisher = {Institute of Electrical and Electronics Engineers ({IEEE})},
+  year      = {2010},
+}
+
+@Article{Everingham2014,
+  author    = {Mark Everingham and S. M. Ali Eslami and Luc Van Gool and Christopher K. I. Williams and John Winn and Andrew Zisserman},
+  title     = {The Pascal Visual Object Classes Challenge: A Retrospective},
+  number    = {1},
+  pages     = {98--136},
+  volume    = {111},
+  journal   = {International Journal of Computer Vision},
+  month     = {6},
+  publisher = {Springer Science and Business Media {LLC}},
+  year      = {2014},
+}
+
+@Article{Zeiler2013,
+  author       = {Matthew D. Zeiler and Rob Fergus},
+  title        = {Visualizing and Understanding Convolutional Networks},
+  journaltitle = {CoRR},
+  date         = {2013-11-12},
+  eprint       = {1311.2901v3},
+  eprintclass  = {cs.CV},
+  eprinttype   = {arXiv},
+  abstract     = {Large Convolutional Network models have recently demonstrated impressive classification performance on the ImageNet benchmark. However there is no clear understanding of why they perform so well, or how they might be improved. In this paper we address both issues. We introduce a novel visualization technique that gives insight into the function of intermediate feature layers and the operation of the classifier. We also perform an ablation study to discover the performance contribution from different model layers. This enables us to find model architectures that outperform Krizhevsky \etal on the ImageNet classification benchmark. We show our ImageNet model generalizes well to other datasets: when the softmax classifier is retrained, it convincingly beats the current state-of-the-art results on Caltech-101 and Caltech-256 datasets.},
+  file         = {:http\://arxiv.org/pdf/1311.2901v3:PDF},
+  keywords     = {cs.CV},
+}
+
+@InCollection{AlexNet,
+  author    = {Alex Krizhevsky and Ilya Sutskever and Geoffrey E. Hinton},
+  title     = {{ImageNet} Classification with Deep Convolutional Neural Networks},
+  booktitle = {Advances in Neural Information Processing Systems 25},
+  publisher = {Curran Associates, Inc.},
+  year      = {2012},
+  pages     = {1097--1105},
+}
+
+@Article{Smith2018,
+  author       = {Leslie N. Smith},
+  title        = {A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, momentum, and weight decay},
+  journaltitle = {CoRR},
+  date         = {2018-03-26},
+  eprint       = {1803.09820v2},
+  eprintclass  = {cs.LG},
+  eprinttype   = {arXiv},
+  file         = {:http\://arxiv.org/pdf/1803.09820v2:PDF},
+  keywords     = {cs.LG, cs.CV, cs.NE, stat.ML},
+}
+
+@Article{Simonyan2013,
+  author      = {Karen Simonyan and Andrea Vedaldi and Andrew Zisserman},
+  title       = {Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps},
+  date        = {2013-12-20},
+  eprint      = {1312.6034v2},
+  eprintclass = {cs.CV},
+  eprinttype  = {arXiv},
+  file        = {:http\://arxiv.org/pdf/1312.6034v2:PDF},
+  keywords    = {cs.CV},
+}
+
+@Article{Snoek2012,
+  author       = {Jasper Snoek and Hugo Larochelle and Ryan P. Adams},
+  title        = {Practical Bayesian Optimization of Machine Learning Algorithms},
+  journaltitle = {arXiv:1206.2944v2},
+  date         = {2012-06-13},
+  eprint       = {1206.2944v2},
+  eprintclass  = {stat.ML},
+  eprinttype   = {arXiv},
+  file         = {:http\://arXiv.org/pdf/1206.2944v2:PDF},
+  keywords     = {stat.ML, cs.LG},
+}
+
+@article{chen2020simple,
+    title={A Simple Framework for Contrastive Learning of Visual Representations},
+    author={Ting Chen and Simon Kornblith and Mohammad Norouzi and Geoffrey Hinton},
+    year={2020},
+    journal={arXiv:2002.05709}
+}
+
+@InProceedings{Zhang2017,
+  author    = {Richard Zhang and Phillip Isola and Alexei A. Efros},
+  booktitle = {2017 {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+  title     = {Split-Brain Autoencoders: Unsupervised Learning by Cross-Channel Prediction},
+  publisher = {{IEEE}},
+  url       = {http://arxiv.org/pdf/1611.09842v3},
+  month     = {jul},
+  year      = {2017},
+}
+
+@Article{Russakovsky2015,
+  author    = {Olga Russakovsky and Jia Deng and Hao Su and Jonathan Krause and Sanjeev Satheesh and Sean Ma and Zhiheng Huang and Andrej Karpathy and Aditya Khosla and Michael Bernstein and Alexander C. Berg and Li Fei-Fei},
+  title     = {{ImageNet} Large Scale Visual Recognition Challenge},
+  number    = {3},
+  pages     = {211--252},
+  url       = {http://arxiv.org/pdf/1409.0575v3},
+  volume    = {115},
+  journal   = {International Journal of Computer Vision},
+  month     = {apr},
+  publisher = {Springer Science and Business Media {LLC}},
+  year      = {2015},
+}
+
+@InProceedings{Gidaris2018,
+  author    = {Spyros Gidaris and Praveer Singh and Nikos Komodakis},
+  booktitle = {International Conference on Learning Representations {ICLR} 2018},
+  title     = {Unsupervised Representation Learning by Predicting Image Rotations},
+  url       = {https://arxiv.org/pdf/1803.07728.pdf},
+}
+
+@InProceedings{Sumbul2019,
+  author    = {Gencer Sumbul and Marcela Charfuelan and Begum Demir and Volker Markl},
+  booktitle = {{IEEE} International Geoscience and Remote Sensing Symposium},
+  title     = {Bigearthnet: A Large-Scale Benchmark Archive for Remote Sensing Image Understanding},
+  publisher = {{IEEE}},
+  url       = {http://bigearth.net/static/documents/BigEarthNet_IGARSS_2019.pdf},
+  month     = {7},
+  year      = {2019},
+}
+
+@Online{Sentinel2RadiometricResolution,
+  author = {{European Space Agency}},
+  date   = {2020-10-12},
+  title  = {Sentinel-2 radiometric resolution},
+  url    = {https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/radiometric},
+}
+
+@Online{Sentinel2SpatialResolution,
+  author = {{European Space Agency}},
+  date   = {2020-10-12},
+  title  = {Sentinel-2 spatial resolution},
+  url    = {https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial},
+}
+
+@Online{Sentinel2Products,
+  author = {{European Space Agency}},
+  date   = {2020-10-12},
+  title  = {Sentinel-2 Data Products},
+  url    = {https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/product-types},
+}
+
+@Online{Sentinel2CloudMasks,
+  author = {{European Space Agency}},
+  date   = {2020-10-12},
+  title  = {Sentinel-2 cloud masks},
+  url    = {https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-1c/cloud-masks},
+}
+
+@Article{Qiu2020,
+  author  = {Shi Qiu and Zhe Zhu and Curtis E. Woodcock},
+  title   = {Cirrus clouds that adversely affect Landsat 8 images: What are they and how to detect them?},
+  number  = {Q},
+  url     = {https://www.sciencedirect.com/science/article/pii/S0034425720302546},
+  journal = {Remote Sensing of Environment},
+  month   = {sep},
+  year    = {2020},
+}
+
+@Online{Sentinel2Heritage,
+  author = {{European Space Agency}},
+  date   = {2020-10-12},
+  title  = {Sentinel-2 Heritage},
+  url    = {https://sentinel.esa.int/web/sentinel/missions/sentinel-2/heritage},
+}
+
+@Book{Fletcher2012,
+  author    = {Fletcher, Karen},
+  title     = {{Sentinel-2 : ESA}'s optical high-resolution mission for {GMES} operational services},
+  isbn      = {9789292214197},
+  publisher = {ESA Communications},
+  url       = {http://esamultimedia.esa.int/multimedia/publications/SP-1322_2/offline/download.pdf},
+  address   = {Noordwijk},
+  year      = {2012},
+}
+
+@Online{Sentinel2Definitions,
+  author = {{European Space Agency}},
+  date   = {2020-10-13},
+  title  = {Sentinel-2 Definitions},
+  url    = {https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/definitions},
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}

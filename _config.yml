@@ -7,7 +7,7 @@
 # https://learnxinyminutes.com/docs/yaml/
 
 title: Kai's Master Thesis Blog
-description: Remote image sensing and self-supervision master thesis blog
+description: Remote image sensing and self-supervision master thesis blog by Kai Norman Clasen
 github_username: kai-tub
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "master-thesis-blog"
@@ -94,6 +94,7 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
+  - jekyll-scholar
 
 # See https://jekyllrb.com/docs/pagination/
 # For pagination to work, you cannot have index.md at the root of your repo, instead you must rename this file to index.html
@@ -115,3 +116,6 @@ kramdown:
   auto_ids: true
   hard_wrap: false
   syntax_highlighter: rouge
+
+scholar:
+  style: ieee-with-url

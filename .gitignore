@@ -17,3 +17,6 @@ __pycache__
 settings.ini
 *Zone.Identifier*
 images/copied_from_nb/
+tmp*
+*.bak
+*.sav
