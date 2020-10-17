@@ -39,8 +39,9 @@ baseurl: "/master-thesis-blog" # the subpath of your site, e.g. "/blog".
 # Github and twitter are optional:
 minima:
   social_links:
-    twitter:
+    twitter: kai_tub
     github: kai-tub
+    linkedin: kai-norman-clasen
 
 # Set this to true to get LaTeX math equation support
 use_math: true
