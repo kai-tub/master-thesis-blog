@@ -1,0 +1,91 @@
+Thesis questions
+=================
+
+What is our goal?
+Use self-supervised learning to do what?
+Or differently, how should it be deployed?
+
+We learn the general, semantic features with self-supervision.
+But how do we go from that to image retrieval? (What role does it play?)
+
+What would our downstream task be? An image retrieval problem?
+Or more self-supervision focussed with image retrieval as an example application?
+(More like a nice to have?)
+
+In terms of percentage, how much work should be put into other approaches 
+translated to RS and how much into my own version? 
+
+Should it be closer to an in-depth RS review similar to the one from the review paper?
+Should I also consider variations of the architecture? 
+Specifically architectures that are designed towards RS tasks?
+What is should be the main focus of the thesis?
+
+BigEarthNet questions
+=====================
+How do you generally work with RS images?
+Have you experience with "classic" approaches? Do you mind giving me a few pointers?
+How much should I know about RS in general?
+I read through an introductory RS course from the humboldt university:
+http://gsp.humboldt.edu/OLM/Courses/GSP_216_Online/lesson3-1/resolution.html#:~:text=Spatial%20resolution%20is%20usually%20reported,side%20of%20a%20single%20pixel.&text=In%20other%20words%2C%20an%20image,that%20is%2030%20meters%20across.
+
+As in, where do you expect my master thesis to start from in terms of theory?
+I like to summarize my work and thoughts about various topics on my blog, 
+I hope you have no issue with me uploading my progress their.
+
+============
+Don't restrict the learning to labels, labels aren't pushing model to a specific direction
+Shuffling bands as an example for self-supervision. 
+Always think about image retrieval (How does it enhance the feature space?)
+Intro should be like: These are the classical approaches and the RS approaches;
+Why aren't some classical approaches going to work? This is my new proposal because this method will lead to better image retrival because they are closer in feature space...
+
+Always remember what data is used!
+Low spatial resolution -> Jig Saw puzzles problematic
+Bird view; Rotation invariant -> Problem for RotNet etc.
+
+Nobody should steal my blog.
+
+
+=================== 2nd Meeting
+Questions:
+
+20 bands can help to characterize more sucessfully
+30 bands don't give a lot of information
+08 and 8A
+
+From email:
+- I wonder why band 08 should be used if band 8A was introduced to be less sensitive to noise, specifically against water-vapor?
+    (See https://sentinel.esa.int/web/sentinel/missions/sentinel-2/heritage)
+
+- I saw that band 10 was removed as it does not contain surface-level information, 
+    but wonder if the bands 09, 11, and 12 significantly contribute to the overall performance.
+    Have you done any experiments to see how excluding specific bands influences the result? 
+    Like excluding band 08, as 8A should contain the necessary information or removing the atmospheric correction bands?
+    
+- Were linear classifiers trained on Band 8 and 8A to see if the values are linear dependent of each other?
+
+- What happened with the NODATA value of 0??? Are they the same in BigEarthNet or fixed to a different value?
+    -> Potentially many people could use this value wrongly
+    - Permute value
+    - excluding data points; patches with nodata were removed
+
+- I would like to see a general overview of how the BigEarthNet was created, 
+    mainly because I am very interested in how the dataset was created 
+    -> I want to understand every step of the way
+
+- Data type questions:
+    - Explain the 12-bit in detail please
+    - How are the values converted?
+    - Could clipping to a specific value and downscaling to 8-bits improve performance? 
+    -> Smaller search space?
+        -> Sound pretty brutal to go from 0 -- X * 10_000 (Quantification value) to 0 -- 256
+        - Does it even make a differene, when they are saved as a float32/float64 value?
+    - 8-bit conversion missing; Gencer is also confused
+    - No Min/Max values normalization
+    - Only batch-normalization
+
+Stacking
+Weakest point in the remote sensing area
+
+Focus on the points, 
+
