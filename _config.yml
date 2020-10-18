@@ -65,6 +65,7 @@ exclude:
   - docker-compose.yml
   - action.yml
   - Makefile
+  - FUNDING.yml
 
 # this setting allows you to keep pages organized in the _pages folder
 include:
