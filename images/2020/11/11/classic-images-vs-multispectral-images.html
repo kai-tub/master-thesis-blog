@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Classic vs remote sensing multispectral images | Kai’s Master Thesis Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Classic vs remote sensing multispectral images" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive comparison between classic RGB images and remote sensing multispectral images." />
+<meta property="og:description" content="A comprehensive comparison between classic RGB images and remote sensing multispectral images." />
+<link rel="canonical" href="https://kai-tub.github.io/master-thesis-blog/images/2020/11/11/classic-images-vs-multispectral-images.html" />
+<meta property="og:url" content="https://kai-tub.github.io/master-thesis-blog/images/2020/11/11/classic-images-vs-multispectral-images.html" />
+<meta property="og:site_name" content="Kai’s Master Thesis Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-11T00:00:00-06:00" />
+<script type="application/ld+json">
+{"headline":"Classic vs remote sensing multispectral images","dateModified":"2020-11-11T00:00:00-06:00","datePublished":"2020-11-11T00:00:00-06:00","description":"A comprehensive comparison between classic RGB images and remote sensing multispectral images.","mainEntityOfPage":{"@type":"WebPage","@id":"https://kai-tub.github.io/master-thesis-blog/images/2020/11/11/classic-images-vs-multispectral-images.html"},"@type":"BlogPosting","url":"https://kai-tub.github.io/master-thesis-blog/images/2020/11/11/classic-images-vs-multispectral-images.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/master-thesis-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://kai-tub.github.io/master-thesis-blog/feed.xml" title="Kai's Master Thesis Blog" /><link rel="shortcut icon" type="image/png" href="/master-thesis-blog/images/icon.png"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Classic vs remote sensing multispectral images | Kai’s Master Thesis Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Classic vs remote sensing multispectral images" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive comparison between classic RGB images and remote sensing multispectral images." />
+<meta property="og:description" content="A comprehensive comparison between classic RGB images and remote sensing multispectral images." />
+<link rel="canonical" href="https://kai-tub.github.io/master-thesis-blog/images/2020/11/11/classic-images-vs-multispectral-images.html" />
+<meta property="og:url" content="https://kai-tub.github.io/master-thesis-blog/images/2020/11/11/classic-images-vs-multispectral-images.html" />
+<meta property="og:site_name" content="Kai’s Master Thesis Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-11T00:00:00-06:00" />
+<script type="application/ld+json">
+{"headline":"Classic vs remote sensing multispectral images","dateModified":"2020-11-11T00:00:00-06:00","datePublished":"2020-11-11T00:00:00-06:00","description":"A comprehensive comparison between classic RGB images and remote sensing multispectral images.","mainEntityOfPage":{"@type":"WebPage","@id":"https://kai-tub.github.io/master-thesis-blog/images/2020/11/11/classic-images-vs-multispectral-images.html"},"@type":"BlogPosting","url":"https://kai-tub.github.io/master-thesis-blog/images/2020/11/11/classic-images-vs-multispectral-images.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://kai-tub.github.io/master-thesis-blog/feed.xml" title="Kai's Master Thesis Blog" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/master-thesis-blog/">Kai&#39;s Master Thesis Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/master-thesis-blog/about/">About me</a><a class="page-link" href="/master-thesis-blog/search/">Search</a><a class="page-link" href="/master-thesis-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Classic vs remote sensing multispectral images</h1><p class="page-description">A comprehensive comparison between classic RGB images and remote sensing multispectral images.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-11-11T00:00:00-06:00" itemprop="datePublished">
+        Nov 11, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/master-thesis-blog/categories/#images">images</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/kai-tub/master-thesis-blog/tree/master/_notebooks/2020-11-11-classic-images-vs-multispectral-images.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/master-thesis-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/kai-tub/master-thesis-blog/master?filepath=_notebooks%2F2020-11-11-classic-images-vs-multispectral-images.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/master-thesis-blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/kai-tub/master-thesis-blog/blob/master/_notebooks/2020-11-11-classic-images-vs-multispectral-images.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/master-thesis-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#About">About </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Values">Values </a></li>
+<li class="toc-entry toc-h2"><a href="#Image-content">Image content </a></li>
+<li class="toc-entry toc-h2"><a href="#Visualizing">Visualizing </a></li>
+<li class="toc-entry toc-h2"><a href="#References">References </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-11-11-classic-images-vs-multispectral-images.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="About">
+<a class="anchor" href="#About" aria-hidden="true"><span class="octicon octicon-link"></span></a>About<a class="anchor-link" href="#About"> </a>
+</h1>
+<p>In this post we are going to do a detailed comparison between classic and multispectral images.</p>
+<p>TODO: Write something in more detail</p>
+<h2 id="Values">
+<a class="anchor" href="#Values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Values<a class="anchor-link" href="#Values"> </a>
+</h2>
+<p>The <a href="https://kai-tub.github.io/master-thesis-blog/images/2020/09/16/images-with-channels.html">introduction to mulit-channel images post</a> explained in great detail how the RGB values are stored on disk. In short, colored images generally use three channels: red (R), green (G), and blue (B). The channels have a predefined <em>range</em>. The range, or the number of distinct colors, is called the color-depth. In the deep-learning field these RGB images usually have a color-depth of 8-bit, resulting in 256 (=2⁸) color tones per channel and ~16 million (=2⁸ x 2⁸ x 2⁸) different color values in total.</p>
+<p>In contrast to RGB images with three channels, we saw multispectral remote sensing data with double-digit channels.
+The exact amount of channels heavily varies between measuring equipment but for now we will focus on
+images from the Sentinel-2 satellites with 13 bands (TODO: Add link).
+The satellites sense electromagnetic waves ranging from the visible/near-infrared spectrum to the shortwave-infrared band.
+The main idea being that the information outside of the visible spectrum helps to better differentiate between objects, even if they <em>look</em> the same in the visible light. For multispectral images the number of bits per channel is not called color-depth, instead it is referred to as radiometric resolution. 
+The radiometric resolution for Sentinel-2 images effectively is 16-bits per band, resulting in much larger image files.</p>
+<p><a></a></p>
+<center>Comparing values of classic and Sentinel-2 images</center>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">Classic RGB images</th>
+<th style="text-align:center">Sentinel-2 multispectral images</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># Channels / Bands</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">13</td>
+</tr>
+<tr>
+<td>Color-depth / Radiometric resolution</td>
+<td style="text-align:center">8-bit</td>
+<td style="text-align:center">16-bit</td>
+</tr>
+<tr>
+<td>Size of 224px x 224px image</td>
+<td style="text-align:center">147 KiB</td>
+<td style="text-align:center">1,274 KiB</td>
+</tr>
+<tr>
+<td>Relative size to classic RGB image</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">8.67</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Image-content">
+<a class="anchor" href="#Image-content" aria-hidden="true"><span class="octicon octicon-link"></span></a>Image content<a class="anchor-link" href="#Image-content"> </a>
+</h2>
+<p>Although it is important to know how the data is digitally represented, we mostly care about the images themselves and not the binary values. 
+Most visual deep-learning applications use pretrained models tuned on the popular image dataset ImageNet <a class="citation" href="#Russakovsky2015">[1]</a>. ImageNet consists of about 1.3 million images from animals, vehicles, tools, and many more everyday objects. Most of them are photos where the <em>interesting</em> object lies in the center of the frame and dominates most of the image.</p>
+<p>This is in stark contrast to satellite images.
+Here, all regions are equally <em>important</em> and contribute to the overall scene.
+A popular alternative to ImageNet is the <a href="http://places2.csail.mit.edu/index.html">Places</a> dataset <a class="citation" href="#Zhou2018">[2]</a>.
+The Places dataset focuses on training deep-learning models on scenes instead on specific objects.
+The main difference to remote images is the spatial resolution. While each pixel on the Places dataset covers a region of some square centimeters, every pixel from satellite imagery often covers double digit square meters! 
+In other words, some remotely-sensed regions may have very few pixels associated with them, even if they are reasonably large and of high-interest.
+As a result of the high spatial resolution, <em>smaller</em> classes <sup id="fnref-1" class="footnote-ref"><a href="#fn-1">1</a></sup> such as airports, port areas, or burnt forests, are severly underrepresented in datasets, while areas such as forests and water bodies dominate the data distribution.
+Also, each image can contain various scenes/objects.</p>
+<p>Another interesting difference, is the rotation invariance of such data.
+Due to the bird-eye view, there is no <em>top</em> or <em>bottom</em> for remote images<sup id="fnref-2" class="footnote-ref"><a href="#fn-2">2</a></sup>.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">Classic RGB images</th>
+<th style="text-align:center">Sentinel-2 multispectral images</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spatial resolution of each pixel</td>
+<td style="text-align:center">from mm² up to cm²</td>
+<td style="text-align:center">~XX m²</td>
+</tr>
+<tr>
+<td>Class distribution</td>
+<td style="text-align:center">balanced</td>
+<td style="text-align:center">heavily imbalanced</td>
+</tr>
+<tr>
+<td>Rotation property</td>
+<td style="text-align:center">Variant to rotation (there is a correct orientation)</td>
+<td style="text-align:center">Invariant (there is no "correct" orientation)</td>
+</tr>
+</tbody>
+</table>
+<p><style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style></p>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky"></th>
+    <th class="tg-c3ow">Classic RGB images</th>
+    <th class="tg-c3ow">Sentinel-2 multispectral images</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0pky">Spatial resolution of each pixel</td>
+    <td class="tg-c3ow">from mm² up to cm²</td>
+    <td class="tg-c3ow">~XX m²</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Class distribution</td>
+    <td class="tg-c3ow">balanced</td>
+    <td class="tg-c3ow">heavily imbalanced</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Rotation property</td>
+    <td class="tg-c3ow">Variant to rotation (there is a correct orientation)</td>
+    <td class="tg-c3ow">Invariant (there is no "correct" orientation)</td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Visualizing">
+<a class="anchor" href="#Visualizing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Visualizing<a class="anchor-link" href="#Visualizing"> </a>
+</h2>
+<ul>
+<li>Show how hard it is to create such images</li>
+<li>Ambiguity</li>
+</ul>
+<p>We understand how the data is represented and what the values stand for.
+But how do we work with these images?
+As most images use the RGB representation by default, there is a plethora of libraries and tools we could use to
+load, visualize and transform the images. 
+As an example, we could use the <code>PIL</code> library we have seen in the previous introductory posts about <a href="https://kai-tub.github.io/master-thesis-blog/images/2020/09/02/introduction-grayscale-images.html">single</a> and <a href="https://kai-tub.github.io/master-thesis-blog/images/2020/09/16/images-with-channels.html">multi-channel</a> images.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">img_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"."</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"2020-11-11"</span> <span class="o">/</span> <span class="s2">"puppy.jpg"</span>
+<span class="n">opened_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure>
+        <div>
+            <figure id="Fig1">
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-11-11/puppy.jpg" alt="Image of a puppy">
+    
+  
+</figure>
+            </figure>
+        </div>
+    <figcaption><center>Fig 1: Example RGB image (Image by <a href="https://pixabay.com/users/3194556-3194556/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1903313">Karen Warfel</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1903313">Pixabay</a>)</center></figcaption>
+</figure>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse</span>
+<span class="k">def</span> <span class="nf">center_crop</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">crop_size</span><span class="o">=</span><span class="mi">512</span><span class="p">):</span>
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">half_crop</span> <span class="o">=</span> <span class="n">crop_size</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="c1"># PILs coordinate system defines the pixel 0, 0 </span>
+    <span class="c1"># as the upper left corner of an image</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">half_crop</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">half_crop</span>
+    <span class="n">upper</span> <span class="o">=</span> <span class="n">height</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">half_crop</span>
+    <span class="n">lower</span> <span class="o">=</span> <span class="n">height</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">half_crop</span>
+    <span class="k">return</span> <span class="n">img</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="n">left</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">lower</span><span class="p">))</span>
+    
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+<span class="n">cropped_rot_img</span> <span class="o">=</span> <span class="n">center_crop</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure>
+        <div>
+            <figure id="Fig2">
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-11-11/cropped_rot_puppy.jpg" alt="Center cropped and rotated image of the previous puppy">
+    
+  
+</figure>
+            </figure>
+        </div>
+    <figcaption><center>Fig 2: Example transformation on RGB image (Image by <a href="https://pixabay.com/users/3194556-3194556/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1903313">Karen Warfel</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1903313">Pixabay</a>)</center></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>With more than 3 channels, only few libraries are avaible. The main question we have to ask ourselves is, what we want to do with these images?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References">
+<a class="anchor" href="#References" aria-hidden="true"><span class="octicon octicon-link"></span></a>References<a class="anchor-link" href="#References"> </a>
+</h2>
+<p></p>
+<ol class="bibliography">
+<li><span id="Russakovsky2015">[1]O. Russakovsky <i>et al.</i>, “ImageNet Large Scale Visual Recognition Challenge,” <i>International Journal of Computer Vision</i>, vol. 115, no. 3, pp. 211–252, Apr. 2015 [Online]. Available at: http://arxiv.org/pdf/1409.0575v3</span></li>
+<li><span id="Zhou2018">[2]B. Zhou, A. Lapedriza, A. Khosla, A. Oliva, and A. Torralba, “Places: A 10 Million Image Database for Scene Recognition,” <i>IEEE Transactions on Pattern Analysis and Machine Intelligence</i>, vol. 40, no. 6, pp. 1452–1464, Jun. 2018 [Online]. Available at: http://places2.csail.mit.edu/PAMI_places.pdf</span></li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="footnotes"><p id="fn-1">1. In the deep-learning field, classes refer to the objects/areas of interest. We hope to train the model in such a way that it can differenciate between them. We will go into more detail in the next post.<a href="#fnref-1" class="footnote footnotes">↩</a></p></div>
+<p></p>
+<div class="footnotes"><p id="fn-2">2. This may seem obvious and irrelevant but it will play a bigger role in later posts, I promise 😉<a href="#fnref-2" class="footnote footnotes">↩</a></p></div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="kai-tub/master-thesis-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/master-thesis-blog/images/2020/11/11/classic-images-vs-multispectral-images.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/master-thesis-blog/"></data>
+
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col">
+                <!-- <p class="feed-subscribe">
+                    <a href="/master-thesis-blog/feed.xml">
+                        <svg class="svg-icon orange">
+                            <use xlink:href="/master-thesis-blog/assets/minima-social-icons.svg#rss"></use>
+                        </svg><span>Subscribe</span>
+                    </a>
+                </p> -->
+                <p>
+                    <a href="https://www.buymeacoffee.com/kaitub" target="_blank"><img
+                            src="https://cdn.buymeacoffee.com/buttons/v2/arial-blue.png" alt="Buy Me A Coffee"
+                            width="162px" height="40px" /></a>
+                </p>
+            </div>
+            <div class="footer-col">
+                <p>Remote image sensing and self-supervision master thesis blog by Kai Norman Clasen</p>
+            </div>
+        </div>
+
+        <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/kai-tub" title="kai-tub"><svg class="svg-icon grey"><use xlink:href="/master-thesis-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/kai-norman-clasen" title="kai-norman-clasen"><svg class="svg-icon grey"><use xlink:href="/master-thesis-blog/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/kai_tub" title="kai_tub"><svg class="svg-icon grey"><use xlink:href="/master-thesis-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+    </div>
+
+</footer></body>
+
+</html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Introduction to self-supervised visual learning | Kai’s Master Thesis Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Introduction to self-supervised visual learning" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A short introduction to self-supervised visual-based learning methods." />
+<meta property="og:description" content="A short introduction to self-supervised visual-based learning methods." />
+<link rel="canonical" href="https://kai-tub.github.io/master-thesis-blog/self-supervised-learning/2020/11/25/introduction-to-self-supervision.html" />
+<meta property="og:url" content="https://kai-tub.github.io/master-thesis-blog/self-supervised-learning/2020/11/25/introduction-to-self-supervision.html" />
+<meta property="og:site_name" content="Kai’s Master Thesis Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-25T00:00:00-06:00" />
+<script type="application/ld+json">
+{"headline":"Introduction to self-supervised visual learning","dateModified":"2020-11-25T00:00:00-06:00","datePublished":"2020-11-25T00:00:00-06:00","description":"A short introduction to self-supervised visual-based learning methods.","mainEntityOfPage":{"@type":"WebPage","@id":"https://kai-tub.github.io/master-thesis-blog/self-supervised-learning/2020/11/25/introduction-to-self-supervision.html"},"@type":"BlogPosting","url":"https://kai-tub.github.io/master-thesis-blog/self-supervised-learning/2020/11/25/introduction-to-self-supervision.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/master-thesis-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://kai-tub.github.io/master-thesis-blog/feed.xml" title="Kai's Master Thesis Blog" /><link rel="shortcut icon" type="image/png" href="/master-thesis-blog/images/icon.png"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Introduction to self-supervised visual learning | Kai’s Master Thesis Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Introduction to self-supervised visual learning" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A short introduction to self-supervised visual-based learning methods." />
+<meta property="og:description" content="A short introduction to self-supervised visual-based learning methods." />
+<link rel="canonical" href="https://kai-tub.github.io/master-thesis-blog/self-supervised-learning/2020/11/25/introduction-to-self-supervision.html" />
+<meta property="og:url" content="https://kai-tub.github.io/master-thesis-blog/self-supervised-learning/2020/11/25/introduction-to-self-supervision.html" />
+<meta property="og:site_name" content="Kai’s Master Thesis Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-25T00:00:00-06:00" />
+<script type="application/ld+json">
+{"headline":"Introduction to self-supervised visual learning","dateModified":"2020-11-25T00:00:00-06:00","datePublished":"2020-11-25T00:00:00-06:00","description":"A short introduction to self-supervised visual-based learning methods.","mainEntityOfPage":{"@type":"WebPage","@id":"https://kai-tub.github.io/master-thesis-blog/self-supervised-learning/2020/11/25/introduction-to-self-supervision.html"},"@type":"BlogPosting","url":"https://kai-tub.github.io/master-thesis-blog/self-supervised-learning/2020/11/25/introduction-to-self-supervision.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://kai-tub.github.io/master-thesis-blog/feed.xml" title="Kai's Master Thesis Blog" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper">
+<a class="site-title" rel="author" href="/master-thesis-blog/">Kai's Master Thesis Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger">
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewbox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+<a class="page-link" href="/master-thesis-blog/about/">About me</a><a class="page-link" href="/master-thesis-blog/search/">Search</a><a class="page-link" href="/master-thesis-blog/categories/">Tags</a>
+</div>
+      </nav>
+</div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Introduction to self-supervised visual learning</h1>
+<p class="page-description">A short introduction to self-supervised visual-based learning methods.</p>
+<p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-11-25T00:00:00-06:00" itemprop="datePublished">
+        Nov 25, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      10 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i> 
+      
+        <a class="category-tags-link" href="/master-thesis-blog/categories/#self-supervised-learning">self-supervised-learning</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/kai-tub/master-thesis-blog/tree/master/_notebooks/2020-11-25-introduction-to-self-supervision.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/master-thesis-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/kai-tub/master-thesis-blog/master?filepath=_notebooks%2F2020-11-25-introduction-to-self-supervision.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/master-thesis-blog/assets/badges/binder.svg" alt="Open In Binder">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/kai-tub/master-thesis-blog/blob/master/_notebooks/2020-11-25-introduction-to-self-supervision.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/master-thesis-blog/assets/badges/colab.svg" alt="Open In Colab">
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1">
+<a href="#About">About </a>
+<ul>
+<li class="toc-entry toc-h2">
+<a href="#Learning-Methods">Learning Methods </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Supervised-Learning">Supervised Learning </a></li>
+<li class="toc-entry toc-h3"><a href="#Unsupervised-learning">Unsupervised learning </a></li>
+<li class="toc-entry toc-h3"><a href="#Reinforcement-learning">Reinforcement learning </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Self-supervised-learning">Self-supervised learning </a></li>
+<li class="toc-entry toc-h2"><a href="#Summary">Summary </a></li>
+<li class="toc-entry toc-h2"><a href="#References">References </a></li>
+</ul>
+</li>
+</ul>
+<!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-11-25-introduction-to-self-supervision.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="About">
+<a class="anchor" href="#About" aria-hidden="true"><span class="octicon octicon-link"></span></a>About<a class="anchor-link" href="#About"> </a>
+</h1>
+<p>After understanding the remote sensing data we will be working with, we will focus on the deep-learning part of my master thesis, specifically self-supervised learning.
+For the following deep-learning topics, it would be helpful to have a general understanding of what deep-learning, or more generally, machine learning is. Still, I will try my best to keep the content comfortable enough for interested readers to follow along. <img class="emoji" title=":relaxed:" alt=":relaxed:" src="https://github.githubassets.com/images/icons/emoji/unicode/263a.png" height="20" width="20"></p>
+<p>There are many great introduction resources and courses for machine learning! For a quick introduction to deep-learning, I highly recommend <a href="https://www.youtube.com/c/3blue1brown">3Blue1Brown's</a> series on neural networks:
+
+</p>
+<center>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/watch?v=aircAruvnKk&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi" frameborder="0" allowfullscreen=""></iframe>
+</center>
+<center>3Blue1Brown's tutorial on neural networks</center>
+<p>A different highly-compressed resource for machine learning in general is <a href="https://leanpub.com/theMLbook">The Hundred-Page Machine Learning Book</a> by Andriy Burkov.</p>
+<p>With that out of the way, let's take a quick refresher on learning methods and see what <em>self-supervised</em> learning methods are.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Learning-Methods">
+<a class="anchor" href="#Learning-Methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Learning Methods<a class="anchor-link" href="#Learning-Methods"> </a>
+</h2>
+<p>In general, there are three primary methods to train deep neural networks:</p>
+<ul>
+<li>Supervised Learning</li>
+<li>Unsupervised Learning</li>
+<li>Reinforcement Learning</li>
+</ul>
+<h3 id="Supervised-Learning">
+<a class="anchor" href="#Supervised-Learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supervised Learning<a class="anchor-link" href="#Supervised-Learning"> </a>
+</h3>
+<p>Most current state-of-the-art computer vision applications utilize  <em>supervised learning methods</em>. In this setting, the input data are <em>labeled</em> images. Humans annotate these labels. A simple scenario would be a dataset for a classification application with the two classes, "dog" and "cat". Here, a human would look at 
+<a href="#Fig1">Fig. 1</a>
+and conclude that it should belong to the category "dog" and annotate it as such.</p>
+<figure>
+        <div>
+            <figure id="Fig1">
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-11-25/puppy.jpg" alt="Image of a puppy">
+    
+  
+</figure>
+            </figure>
+        </div>
+    <figcaption><center>Fig 1: Example image of a dog (Image by <a href="https://pixabay.com/users/3194556-3194556/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1903313">Karen Warfel</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1903313">Pixabay</a>)</center></figcaption>
+</figure><p>This process is repeated for every image in the dataset until all images are labeled. Then the learning process starts. The model tries to predict the correct label, and <em>learns</em> from its mistake by comparing its predictions to the <em>ground-truth</em> labels.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure id="Fig2">
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-11-25/supervised-learning.svg" alt="Flowchart of supervised training">
+    
+  
+</figure>
+    <figcaption><center>Fig. 2: Supervised training loop</center></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="#Fig2">Fig. 2</a> shows the general learning, or training, loop of a supervised method.</p>
+<ol>
+<li>Data is fed into the Model. For example, many images of dogs and cats.</li>
+<li>The model <em>predicts</em> an output. In our scenario, it could guess that the current image is a dog.</li>
+<li>The prediction of the model is compared to the <em>correct</em> label. The difference between the correct label and the prediction is mathematically expressed as a loss.</li>
+<li>The loss is then used to tell the model how <em>wrong</em> the prediction was and is used to update the model's parameters. This update procedure is the <em>learning</em> part.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Although supervised-learning leads to the highest model performance, there is one significant limitation: cost. The cost of annotating all images is immense. The standard large-scale image dataset used to compare research results, ImageNet <a class="citation" href="#Russakovsky2015">[1]</a>, has more than 1.3 million labeled images with 1,000 classes! These images have to be manually annotated and verified. The necessary steps to gather data for supervised-learning can be seen in <a href="#Fig3">Fig. 3</a>. The annotation process is even worse for video datasets, as these have a temporal dimension.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure id="Fig3">
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-11-25/data-gathering-label.svg" alt="Flowchart of the data gathering process for supervised-learning methods">
+    
+  
+</figure>
+    <figcaption><center>Fig. 3: Data gathering process for supervised-learning methods</center></figcaption>
+</figure><p>An alternative is unsupervised learning, which does not reach the same model performance as supervised learning (yet).
+But, unsupervised learning has one significant practical advantage...</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Unsupervised-learning">
+<a class="anchor" href="#Unsupervised-learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unsupervised learning<a class="anchor-link" href="#Unsupervised-learning"> </a>
+</h3>
+<p>Unsupervised learning methods do not require <em>any</em> human-annotated labels. The specific methods use different approaches to <em>learn</em> from the data itself. They iterate and update their predictions in various ways and usually define their loss based on their previous predictions. The process of iterating through the data and <em>learning</em> from some definition of error/loss remains. Compare <a href="#Fig2">Fig. 2</a> with <a href="#Fig4">Fig. 4</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure id="Fig4">
+        <div>
+            <figure>
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-11-25/unsupervised-learning.svg" alt="Flowchart of unsupervised learning loop">
+    
+  
+</figure>
+            </figure>
+        </div>
+    <figcaption><center>Fig. 4: Unsupervised training loop</center></figcaption>
+</figure><p>A classic unsupervised machine learning method is <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means clustering</a>. Here the data is grouped into clusters of data points that are close to each other. What these clusters <em>represent</em> is not essential for the algorithm. The interpretation is left for human evaluation. <a href="#Fig5">Fig. 5</a> shows the result of k-means on two-dimensional data. As we can see, no information about the data points themselves is required. The algorithm simply uses the <em>distance</em> between the points to <em>group</em> them. The main idea being that these groups have something <em>interesting</em> in common and belong together.</p>
+<figure id="Fig5">
+        <div>
+            <figure>
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-11-25/k-means.png" alt="Image of a k-means result">
+    
+  
+</figure>
+            </figure>
+        </div>
+    <figcaption><center>Fig. 5: Example solution of k-means (Image by Akshay Singhal from <a href="https://www.gatevidyalay.com/k-means-clustering-algorithm-example/">Gatevidyalay</a>)</center></figcaption>
+</figure><p>In the context of deep-learning, the time spent to train unsupervised models is generally similar to the training time of supervised methods. No time is saved during the training process! 
+The main reason why unsupervised-learning methods are so interesting is because they don't require any labels!
+The absence of labels reduces the overall cost and time to generate the required data and <em>may</em> lead to faster production times.</p>
+<p>One promising subset of unsupervised learning methods for deep learning is called <em>self-supervised</em> learning.
+We will take a closer look at self-supervised learning in the next section.
+Before that, let's look at the last significant learning approach:
+reinforcement learning.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Reinforcement-learning">
+<a class="anchor" href="#Reinforcement-learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reinforcement learning<a class="anchor-link" href="#Reinforcement-learning"> </a>
+</h3>
+<p>Reinforcement learning is somewhat very different from the previous
+learning methods due to the learning procedure's nature. Reinforcement learning does not learn from <em>static</em> data but from interactions with its <em>environment</em> as an <em>actor</em>, see <a href="#Fig6">Fig. 6</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure id="Fig6">
+        <div>
+            <figure>
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-11-25/reinforcement-learning.svg" alt="Flowchart of reinforcement learning loop">
+    
+  
+</figure>
+            </figure>
+        </div>
+    <figcaption><center>Fig. 6: Reinforcement training loop</center></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In short, the model tries to learn the actions which will get the highest reward. Classical variations use reinforcement learning to beat computer or board games. One model with high media coverage was <a href="https://en.wikipedia.org/wiki/AlphaGo">AlphaGo</a>. AlphaGo beat the 18-time world champion Lee Sedol in the board game Go,
+a too hard game for machines to master for a very long time. Because reinforcement learning is so very different, we won't be going into any more detail, even if it is a fascinating subject.</p>
+<p>Let's go back to the previous, shortly introduced unsupervised learning method, <em>self-supervised</em> learning, as this method will be sticking with us for a very long time.</p>
+<h2 id="Self-supervised-learning">
+<a class="anchor" href="#Self-supervised-learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Self-supervised learning<a class="anchor-link" href="#Self-supervised-learning"> </a>
+</h2>
+<p>Self-supervised learning was introduced as an unsupervised learning method. Therefore, self-supervised learning methods do not require any human-annotated labels. At this point, you might ask why the term <em>human-annotated</em> was always mentioned in conjunction with labels instead of just labels. The reason is that self-supervised methods create their labels!</p>
+<p>Instead of relying on labels from hard-working humans, these methods automatically generate their own labels, <em>pseudolabels</em>, through a so-called <em>pretext task</em>. A general self-supervised training loop can be seen in <a href="#Fig7"> Fig. 7</a>.
+These pretext tasks are very different from each other.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure id="Fig7">
+        <div>
+            <figure>
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-11-25/self-supervised-learning.svg" alt="Flowchart of a self-supervised learning loop">
+    
+  
+</figure>
+            </figure>
+        </div>
+    <figcaption><center>Fig. 7: Self-supervised training loop</center></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In my opinion, an ingenious idea was to, first, simply rotate the images by
+either 0°, 90°, or 270°. Then, to let the network guess by how much the image was rotated. <a class="citation" href="#Gidaris2018">[2]</a>
+The idea is that the model learns
+the objects' visual features to recognize the <em>correct</em> orientation of the image. In the end, this is nothing more than a classification task, where the pseudolabels are generated by randomly rotating the image. See <a href="#Fig8">Fig. 8</a> for an overview. The pretext task isn't
+limited to creating pseudolabels from the input data. Some variations
+combine the input with the model's prediction to create
+pseudolabels, and others combine multiple pretext tasks.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure id="Fig8">
+        <div>
+            <figure>
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-11-25/rot-chart.svg" alt="Flowchart of rotation based self-supervised learning">
+    
+  
+</figure>
+            </figure>
+        </div>
+    <figcaption><center>Fig. 8: Rotation based self-supervised learning</center></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But, what is the result of such an unsupervised training loop? In short, a <em>trained</em> model. The model should detect and differentiate objects from each other without being explicitly taught what these objects are. 
+Some applications then work with the trained model without changing it.
+Others <em>finetune</em> the model on a similar, small labeled dataset. In the finetune procedure, only minor changes to the model are made. Here, we are trying to tell the model what objects we are <em>interested</em> in.</p>
+<p>Looking back to our previous example, we could train a model on random images from <a href="https://www.flickr.com/explore">Flickr</a> without labeling them. Afterwards, we finetune our model to differentiate between dogs and cats by supplying a small labeled dataset. The model should perform very well without a lot of training because it already <em>knows</em> how to differentiate dogs and cats by looking at random images from Flickr. At least, this is what we hope. Our dataset <em>pushes</em> the model to focus on a specific task.</p>
+<p>In the research community, the self-supervised learning methods are evaluated by a similar procedure.
+First, the model is trained on a dataset without using any human-annotated labels and is then finetuned on a <em>downstream task</em> of a different dataset. A possible downstream task would be to classify dogs and cats. The score of the downstream tasks is used as a quantitive measure of the generability of the model.</p>
+<!-- How are these models being deployed? -->
+
+<p>The authors from Jing <em>et. al</em> <a class="citation" href="#Jing2020">[3]</a> gave a very detailed overview of the various self-supervision approaches. For images, there are three significant types of pretext tasks, as shown in <a href="#Fig9">Fig. 9</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure id="Fig9">
+        <div>
+            <figure>
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-11-25/pretext-tasks.svg" alt="Mindmap of the three big pretext task types">
+    
+  
+</figure>
+            </figure>
+        </div>
+    <figcaption><center>Fig. 9: The three pretext task types</center></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In <em>generation-based</em> methods, the model has to <em>generate</em> data to match the pseudolabel. For example, the model gets a grayscale image and has to colorize the image. The pseudolabel would be the original RGB image by itself! A different generation based method would be to <em>cut</em> out parts of the image and to let the model try to synthesize the missing region.</p>
+<p>Our previous rotation example, where the model had to guess the image's rotation, is a <em>context-based</em> method. The context can be derived from the image itself (rotation, solving spatial puzzles) or by context similarity.</p>
+<p>Both of these pretext tasks implicitly force the networks to learn semantic features. In our rotation example, we never tell the model what
+the objects are, but it has to learn various objects' features to predict the rotation correctly. If one doesn't know how animals, walls, water, ground, sky, hills, etc. look like, you couldn't predict how much an image was rotated.</p>
+<p><em>Free semantic label-based</em> methods take a more direct approach. Here the manual annotation effort is bypassed by automatically generating <em>true</em> labels. Hence the name, <em>free semantic label</em>. Usually, game engines are utilized to generate object maps. In other words, we generate the images with the help of the game engine, and because we know what we are rendering and where we are putting the objects, we get the <em>labels</em> for free.  Due to the synthetic nature, the pixels that belong to an object can be automatically generated, or the object names themselves can be exported.
+Here, the model directly learns visual features; <em>But</em> there is a domain gap between synthetic and natural images.</p>
+<p>Each method has its strength and weakness. But, before we go into any more detail, let's summarize our findings so far.</p>
+<h2 id="Summary">
+<a class="anchor" href="#Summary" aria-hidden="true"><span class="octicon octicon-link"></span></a>Summary<a class="anchor-link" href="#Summary"> </a>
+</h2>
+<p>These are the main things you should take away from this post:</p>
+<ol>
+<li>Currently, supervised learning methods lead to the best performance, but require human-annotated images</li>
+<li>Annotating images is costly and takes a lot of time, good unsupervised approaches could open up deep-learning for even more use-cases.</li>
+<li>Self-supervised learning is a subset of unsupervised learning.</li>
+<li>As a subset of unsupervised learning, self-supervised learning does not require any labels.</li>
+<li>Self-supervised methods generate their <em>own</em> labels, pseudolabels, by completing a pretext task</li>
+<li>There are three different pretext tasks<ul>
+<li>generation-based methods</li>
+<li>context-based methods</li>
+<li>free semantic labels-based methods</li>
+</ul>
+</li>
+</ol>
+<p><strong>PS:</strong></p>
+<p><img class="emoji" title=":tada:" alt=":tada:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png" height="20" width="20"> You made it until the end of this long post! <img class="emoji" title=":tada:" alt=":tada:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png" height="20" width="20"></p>
+<p>This post was quite long and is probably hard to follow without any prior knowledge of machine/deep-learning. Hopefully, the main points of the posts were still clear.</p>
+<p>In the next posts, we will take a closer look at the different self-supervision based methods and think about how applicable they would be in a remote sensing setting.</p>
+<p>Until then, have a productive time! <img class="emoji" title=":+1:" alt=":+1:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png" height="20" width="20"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References">
+<a class="anchor" href="#References" aria-hidden="true"><span class="octicon octicon-link"></span></a>References<a class="anchor-link" href="#References"> </a>
+</h2>
+<p></p>
+<ol class="bibliography">
+<li><span id="Russakovsky2015">[1]O. Russakovsky <i>et al.</i>, “ImageNet Large Scale Visual Recognition Challenge,” <i>International Journal of Computer Vision</i>, vol. 115, no. 3, pp. 211–252, Apr. 2015 [Online]. Available at: http://arxiv.org/pdf/1409.0575v3</span></li>
+<li><span id="Gidaris2018">[2]S. Gidaris, P. Singh, and N. Komodakis, “Unsupervised Representation Learning by Predicting Image Rotations,” in <i>International Conference on Learning Representations ICLR 2018</i> [Online]. Available at: https://arxiv.org/pdf/1803.07728.pdf</span></li>
+<li><span id="Jing2020">[3]L. Jing and Y. Tian, “Self-supervised Visual Feature Learning with Deep Neural Networks: A Survey,” <i>IEEE Transactions on Pattern Analysis and Machine Intelligence</i>, 2020 [Online]. Available at: https://arxiv.org/pdf/1902.06162.pdf</span></li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div>
+<!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js" repo="kai-tub/master-thesis-blog" issue-term="title" label="blogpost-comment" theme="github-light" crossorigin="anonymous" async>
+</script><a class="u-url" href="/master-thesis-blog/self-supervised-learning/2020/11/25/introduction-to-self-supervision.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/master-thesis-blog/"></data>
+
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col">
+                <!-- <p class="feed-subscribe">
+                    <a href="/master-thesis-blog/feed.xml">
+                        <svg class="svg-icon orange">
+                            <use xlink:href="/master-thesis-blog/assets/minima-social-icons.svg#rss"></use>
+                        </svg><span>Subscribe</span>
+                    </a>
+                </p> -->
+                <p>
+                    <a href="https://www.buymeacoffee.com/kaitub" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-blue.png" alt="Buy Me A Coffee" width="162px" height="40px"></a>
+                </p>
+            </div>
+            <div class="footer-col">
+                <p>Remote image sensing and self-supervision master thesis blog by Kai Norman Clasen</p>
+            </div>
+        </div>
+
+        <div class="social-links">
+<ul class="social-media-list">
+<li><a rel="me" href="https://github.com/kai-tub" title="kai-tub"><svg class="svg-icon grey"><use xlink:href="/master-thesis-blog/assets/minima-social-icons.svg#github"></use></svg></a></li>
+<li><a rel="me" href="https://www.linkedin.com/in/kai-norman-clasen" title="kai-norman-clasen"><svg class="svg-icon grey"><use xlink:href="/master-thesis-blog/assets/minima-social-icons.svg#linkedin"></use></svg></a></li>
+<li><a rel="me" href="https://twitter.com/kai_tub" title="kai_tub"><svg class="svg-icon grey"><use xlink:href="/master-thesis-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li>
+</ul>
+</div>
+
+    </div>
+
+</footer></body>
+
+</html>
