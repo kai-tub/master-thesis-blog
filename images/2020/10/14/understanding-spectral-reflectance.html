@@ -3,9 +3,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Understanding spectral reflectance | Kai’s Master Thesis Blog</title>
-<meta name="generator" content="Jekyll v4.0.0" />
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Understanding spectral reflectance" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A review of different spectral reflectance curves and how they can be used to differentiate objects." />
@@ -15,12 +15,14 @@
 <meta property="og:site_name" content="Kai’s Master Thesis Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-14T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Understanding spectral reflectance" />
 <script type="application/ld+json">
-{"headline":"Understanding spectral reflectance","dateModified":"2020-10-14T00:00:00-05:00","datePublished":"2020-10-14T00:00:00-05:00","description":"A review of different spectral reflectance curves and how they can be used to differentiate objects.","mainEntityOfPage":{"@type":"WebPage","@id":"https://kai-tub.github.io/master-thesis-blog/images/2020/10/14/understanding-spectral-reflectance.html"},"@type":"BlogPosting","url":"https://kai-tub.github.io/master-thesis-blog/images/2020/10/14/understanding-spectral-reflectance.html","@context":"https://schema.org"}</script>
+{"description":"A review of different spectral reflectance curves and how they can be used to differentiate objects.","@type":"BlogPosting","headline":"Understanding spectral reflectance","dateModified":"2020-10-14T00:00:00-05:00","datePublished":"2020-10-14T00:00:00-05:00","url":"https://kai-tub.github.io/master-thesis-blog/images/2020/10/14/understanding-spectral-reflectance.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://kai-tub.github.io/master-thesis-blog/images/2020/10/14/understanding-spectral-reflectance.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/master-thesis-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://kai-tub.github.io/master-thesis-blog/feed.xml" title="Kai's Master Thesis Blog" /><link rel="shortcut icon" type="image/png" href="/master-thesis-blog/images/icon.png"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<link rel="stylesheet" href="/master-thesis-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://kai-tub.github.io/master-thesis-blog/feed.xml" title="Kai's Master Thesis Blog" /><link rel="shortcut icon" type="image/png" href="/master-thesis-blog/images/icon.png"><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Understanding spectral reflectance | Kai’s Master Thesis Blog</title>
-<meta name="generator" content="Jekyll v4.0.0" />
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Understanding spectral reflectance" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A review of different spectral reflectance curves and how they can be used to differentiate objects." />
@@ -30,8 +32,10 @@
 <meta property="og:site_name" content="Kai’s Master Thesis Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-14T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Understanding spectral reflectance" />
 <script type="application/ld+json">
-{"headline":"Understanding spectral reflectance","dateModified":"2020-10-14T00:00:00-05:00","datePublished":"2020-10-14T00:00:00-05:00","description":"A review of different spectral reflectance curves and how they can be used to differentiate objects.","mainEntityOfPage":{"@type":"WebPage","@id":"https://kai-tub.github.io/master-thesis-blog/images/2020/10/14/understanding-spectral-reflectance.html"},"@type":"BlogPosting","url":"https://kai-tub.github.io/master-thesis-blog/images/2020/10/14/understanding-spectral-reflectance.html","@context":"https://schema.org"}</script>
+{"description":"A review of different spectral reflectance curves and how they can be used to differentiate objects.","@type":"BlogPosting","headline":"Understanding spectral reflectance","dateModified":"2020-10-14T00:00:00-05:00","datePublished":"2020-10-14T00:00:00-05:00","url":"https://kai-tub.github.io/master-thesis-blog/images/2020/10/14/understanding-spectral-reflectance.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://kai-tub.github.io/master-thesis-blog/images/2020/10/14/understanding-spectral-reflectance.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -171,13 +175,6 @@ window.onload = wrap_img;
 
 <div class="container" id="notebook-container">
         
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    
-
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -242,8 +239,7 @@ Now is the chance to use some <code>pandas</code> to read the spectrum and visua
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
 
@@ -419,8 +415,7 @@ It heavily reflects the radiation in the non-visible spectrum, specifically in t
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse</span>
-<span class="n">full</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">mark_line</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">full</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">mark_line</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">"EM spectrum in microns"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"EM spectrum in microns"</span><span class="p">),</span>
     <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">"Reflectance in %"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Reflectance in %"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])),</span>
     <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">"black"</span><span class="p">),</span>
@@ -511,7 +506,7 @@ It heavily reflects the radiation in the non-visible spectrum, specifically in t
 <div class="text_cell_render border-box-sizing rendered_html">
 <p></p>
 <div class="flash flash-warn">
-    <svg class="octicon octicon-zap octicon octicon-zap" viewbox="0 0 10 16" version="1.1" width="10" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M10 7H6l3-7-9 9h4l-3 7 9-9z"></path></svg>
+    <svg class="octicon octicon-zap octicon octicon-zap" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M10.561 1.5a.016.016 0 00-.01.004L3.286 8.571A.25.25 0 003.462 9H6.75a.75.75 0 01.694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0012.538 7H9.25a.75.75 0 01-.683-1.06l2.008-4.418.003-.006a.02.02 0 00-.004-.009.02.02 0 00-.006-.006L10.56 1.5zM9.504.43a1.516 1.516 0 012.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.25 1.25 0 01-.871.354h-.302a1.25 1.25 0 01-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429z"></path></svg>
     <strong>Important: </strong>Differenciating objects by comparing their spectral reflectance is central for multi-spectral remote sensing applications!
 </div>
 <p>While the curve represents green vegetation in general, the shape of the curve in the near-infrared range can be used to discriminate between different plant species.
@@ -530,8 +525,7 @@ Most healthy vegetation has a very high reflectance in the near-infrared range, 
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse</span>
-<span class="c1"># After the README -1.23e+034 is a NaN value from defective bands</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># After the README -1.23e+034 is a NaN value from defective bands</span>
 <span class="c1"># And that the BECK name string means that we have 480 channels</span>
 <span class="c1"># ranging from 0.2 - 3 microns</span>
 <span class="n">beck_start</span> <span class="o">=</span> <span class="mf">0.2</span>
