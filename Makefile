@@ -6,6 +6,10 @@ server: .FORCE
 	docker-compose down --remove-orphans || true;
 	docker-compose up
 
+draftserver: .FORCE
+	docker-compose -f docker-compose-draft.yml down --remove-orphans || true;
+	docker-compose -f docker-compose-draft.yml up
+
 # start (or restart) the services in detached mode
 server-detached: .FORCE
 	docker-compose down || true;
@@ -15,15 +19,13 @@ server-detached: .FORCE
 build: .FORCE
 	chmod 777 Gemfile.lock
 	docker-compose stop || true; docker-compose rm || true;
-	docker build --no-cache -t hamelsmu/fastpages-nbdev -f _action_files/fastpages-nbdev.Dockerfile .
-	docker build --no-cache -t hamelsmu/fastpages-jekyll -f _action_files/fastpages-jekyll.Dockerfile .
+	docker build --no-cache -t fastai/fastpages-jekyll -f _action_files/fastpages-jekyll.Dockerfile .
 	docker-compose build --force-rm --no-cache
 
 # rebuild the services WITH cache
 quick-build: .FORCE
 	docker-compose stop || true;
-	docker build -t hamelsmu/fastpages-nbdev -f _action_files/fastpages-nbdev.Dockerfile .
-	docker build -t hamelsmu/fastpages-jekyll -f _action_files/fastpages-jekyll.Dockerfile .
+	docker build -t fastai/fastpages-jekyll -f _action_files/fastpages-jekyll.Dockerfile .
 	docker-compose build 
 
 # convert word & nb without Jekyll services

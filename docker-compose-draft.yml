@@ -21,12 +21,6 @@ services:
     <<: *fastpages
     command: /fastpages/action_entrypoint.sh
 
-  # notebook:
-  #   <<: *fastpages
-  #   command: jupyter notebook --allow-root --no-browser --ip=0.0.0.0 --port=8080 --NotebookApp.token='' --NotebookApp.password=''
-  #   ports:
-  #     - "8080:8080"
-
   watcher:
     <<: *fastpages
     command: watchmedo shell-command --command /fastpages/action_entrypoint.sh --pattern *.ipynb --recursive --drop
@@ -41,4 +35,4 @@ services:
     volumes:
       - .:/data/
     command: >
-      bash -c "chmod -R u+rwx . && jekyll serve --host 0.0.0.0 --trace --strict_front_matter"
+      bash -c "chmod -R u+rwx . && jekyll serve --draft --host 0.0.0.0 --trace --strict_front_matter"

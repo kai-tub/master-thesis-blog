@@ -121,3 +121,6 @@ kramdown:
 
 scholar:
   style: ieee-with-url
+
+# Kais RSS fix
+# show_drafts: true
