@@ -4,13 +4,6 @@
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col">
-                <!-- <p class="feed-subscribe">
-                    <a href="{{ 'feed.xml' | relative_url }}">
-                        <svg class="svg-icon orange">
-                            <use xlink:href="{{ 'assets/minima-social-icons.svg#rss' | relative_url }}"></use>
-                        </svg><span>Subscribe</span>
-                    </a>
-                </p> -->
                 {%- if site.author %}
                 <ul class="contact-list">
                     {% if site.author.name -%}
@@ -25,6 +18,15 @@
                     <a href="https://www.buymeacoffee.com/kaitub" target="_blank"><img
                             src="https://cdn.buymeacoffee.com/buttons/v2/arial-blue.png" alt="Buy Me A Coffee"
                             width="162px" height="40px" /></a>
+                </p>
+                <p class="feed-subscribe">
+                    <a href="{{ 'feed.xml' | relative_url }}">
+                        <!-- <svg class="svg-icon orange"> -->
+                        <!-- <use xlink:href="{{ 'assets/minima-social-icons.svg#rss' | relative_url }}"></use> -->
+                        <img src="{{ "images/rss.png" | relative_url }}" height="30px" />
+                        <!-- </svg> -->
+                        <span>Subscribe</span>
+                    </a>
                 </p>
             </div>
             <div class="footer-col">
