@@ -476,4 +476,8 @@ table { display: block !important; white-space: normal; max-width: 100%; font-si
 
 table th { text-align: center !important; }
 
+.output_area pre, .output_area div { margin-bottom: 1rem !important; margin-top: 1rem !important; padding-bottom: 0 !important; padding-top: 0 !important; }
+
+div[id^=altair-viz] { text-align: center; display: flex; justify-content: center; align-items: center; }
+
 /*# sourceMappingURL=style.css.map */
