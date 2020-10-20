@@ -472,4 +472,8 @@ table th { text-align: center !important; }
 
 .highlight .gd { color: #ff5555; }
 
+table { display: block !important; white-space: normal; max-width: 100%; font-size: 100%; border: none; }
+
+table th { text-align: center !important; }
+
 /*# sourceMappingURL=style.css.map */
