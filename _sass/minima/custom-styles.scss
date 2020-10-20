@@ -10,30 +10,19 @@
 // If you want to turn off dark background for syntax highlighting, comment or delete the below line.
 @import "minima/fastpages-dracula-highlight"; 
 
-// .rendered_html div {
-//     display: table-cell;
-//     text-align: center;
-//     vertical-align: middle;
-// }
-
 table {
   display: block !important;
   white-space: normal;
   max-width: 100%;
+  // Increase the font size to 100%
   font-size: 100%;
   border:none;
   th{
     text-align: center! important;
   }
-}
-
-.output_area pre, .output_area div {
-    margin-bottom: 1rem !important;
-    margin-top: 1rem !important;
-    padding-bottom: 0 !important;
-    padding-top: 0 !important;
-// Center the output_area i.e. Altair Charts
-    // text-align: center;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 
