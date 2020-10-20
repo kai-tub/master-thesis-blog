@@ -29,7 +29,7 @@ table {
 // [id^=altair-viz] all elements with an id attribute value starting with the string altair-viz
 [id^=altair-viz] {
   text-align: center;
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
 }
