@@ -84,8 +84,40 @@ From email:
     - No Min/Max values normalization
     - Only batch-normalization
 
-Stacking
-Weakest point in the remote sensing area
+- What are the weak points of the paper?
 
-Focus on the points, 
+=================== 3nd Meeting
+My ideas:
+- Use the newest paper from Caron et. al. as a baseline
+    - can process unlimited sized datasets
+    - does not require long computations for _contrastive_ part
+    - very high performance on self-supervision tasks
+    - uses a similarity measure to compute _difference_ between images
+        - should translate to a good foundation for image retrival tasks
+- Data augmentation with 90degrees
+- different architectures
+	- classic 3 channel architectures
+	- 3 channel architectures combining them later on with weights
+	- Using multiple channels in a single network
+		- FCN for spatial resolution
+		- Other specialized network proposals to keep the size small
+	-> Based on a recommended paper that network architecture heavily influences the
+		performance
+- Read CVPR2020 for a better general overview of high-quality papers
+
+Recommendation from Gencer:
+- look at metric learning space
+    - something like triplet strategy
+- split-brain paper ✅
+
+What he would like to be looked into for the next meeting:
+- think about how to extend the property of data points
+    - add missing volumes to predict (predict which bands are missing) 
+    - multiple branches with contrastive learning
+- branches for different spaces let them self-supervised approach and combining them
+- try to regularize the transformation space or the prototypes in some "smart" way
+- integrate with different augmentation techniques
+    - make approach agnostic to different countries or seasonal changes
+- change characteristics of the model more than incremental (there has to be a substantial new idea)
+
 
