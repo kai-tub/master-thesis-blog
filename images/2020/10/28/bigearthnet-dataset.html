@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Introduction to the BigEarthNet dataset | Kai’s Master Thesis Blog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Introduction to the BigEarthNet dataset" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A look at the new BigEarthNet dataset, based on sentinel-2 multispectral images." />
+<meta property="og:description" content="A look at the new BigEarthNet dataset, based on sentinel-2 multispectral images." />
+<link rel="canonical" href="https://kai-tub.github.io/master-thesis-blog/images/2020/10/28/bigearthnet-dataset.html" />
+<meta property="og:url" content="https://kai-tub.github.io/master-thesis-blog/images/2020/10/28/bigearthnet-dataset.html" />
+<meta property="og:site_name" content="Kai’s Master Thesis Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-28T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Introduction to the BigEarthNet dataset" />
+<script type="application/ld+json">
+{"description":"A look at the new BigEarthNet dataset, based on sentinel-2 multispectral images.","@type":"BlogPosting","headline":"Introduction to the BigEarthNet dataset","dateModified":"2020-10-28T00:00:00-05:00","datePublished":"2020-10-28T00:00:00-05:00","url":"https://kai-tub.github.io/master-thesis-blog/images/2020/10/28/bigearthnet-dataset.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://kai-tub.github.io/master-thesis-blog/images/2020/10/28/bigearthnet-dataset.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/master-thesis-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://kai-tub.github.io/master-thesis-blog/feed.xml" title="Kai's Master Thesis Blog" /><link rel="shortcut icon" type="image/png" href="/master-thesis-blog/images/icon.png"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Introduction to the BigEarthNet dataset | Kai’s Master Thesis Blog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Introduction to the BigEarthNet dataset" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A look at the new BigEarthNet dataset, based on sentinel-2 multispectral images." />
+<meta property="og:description" content="A look at the new BigEarthNet dataset, based on sentinel-2 multispectral images." />
+<link rel="canonical" href="https://kai-tub.github.io/master-thesis-blog/images/2020/10/28/bigearthnet-dataset.html" />
+<meta property="og:url" content="https://kai-tub.github.io/master-thesis-blog/images/2020/10/28/bigearthnet-dataset.html" />
+<meta property="og:site_name" content="Kai’s Master Thesis Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-28T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Introduction to the BigEarthNet dataset" />
+<script type="application/ld+json">
+{"description":"A look at the new BigEarthNet dataset, based on sentinel-2 multispectral images.","@type":"BlogPosting","headline":"Introduction to the BigEarthNet dataset","dateModified":"2020-10-28T00:00:00-05:00","datePublished":"2020-10-28T00:00:00-05:00","url":"https://kai-tub.github.io/master-thesis-blog/images/2020/10/28/bigearthnet-dataset.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://kai-tub.github.io/master-thesis-blog/images/2020/10/28/bigearthnet-dataset.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://kai-tub.github.io/master-thesis-blog/feed.xml" title="Kai's Master Thesis Blog" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/master-thesis-blog/">Kai&#39;s Master Thesis Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/master-thesis-blog/about/">About me</a><a class="page-link" href="/master-thesis-blog/search/">Search</a><a class="page-link" href="/master-thesis-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Introduction to the BigEarthNet dataset</h1><p class="page-description">A look at the new BigEarthNet dataset, based on sentinel-2 multispectral images.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-28T00:00:00-05:00" itemprop="datePublished">
+        Oct 28, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/master-thesis-blog/categories/#images">images</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/kai-tub/master-thesis-blog/tree/master/_notebooks/2020-10-28-bigearthnet-dataset.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/master-thesis-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/kai-tub/master-thesis-blog/master?filepath=_notebooks%2F2020-10-28-bigearthnet-dataset.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/master-thesis-blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/kai-tub/master-thesis-blog/blob/master/_notebooks/2020-10-28-bigearthnet-dataset.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/master-thesis-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#About">About </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Sentinel-2-mission">Sentinel-2 mission </a></li>
+<li class="toc-entry toc-h2"><a href="#BigEarthNet">BigEarthNet </a></li>
+<li class="toc-entry toc-h2"><a href="#Summary">Summary </a></li>
+<li class="toc-entry toc-h2"><a href="#References">References </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-10-28-bigearthnet-dataset.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="About">
+<a class="anchor" href="#About" aria-hidden="true"><span class="octicon octicon-link"></span></a>About<a class="anchor-link" href="#About"> </a>
+</h1>
+<p>In the previous post, <a href="https://kai-tub.github.io/master-thesis-blog/images/2020/10/14/understanding-spectral-reflectance.html">understanding spectral reflectance</a>, we saw that objects could be differentiated by their surface reflectance. The surface reflectance can be sensed as multi-spectral images from satellites. In the following post, we will examine the Sentinel-2 mission and the resulting data. Afterwards, we will review an example remote sensing dataset, BigEarthNet.</p>
+<h2 id="Sentinel-2-mission">
+<a class="anchor" href="#Sentinel-2-mission" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sentinel-2 mission<a class="anchor-link" href="#Sentinel-2-mission"> </a>
+</h2>
+<p><a href="https://en.wikipedia.org/wiki/Sentinel-2">Sentinel-2</a> is an earth-observation mission and consists of two satellites
+Sentinel-2A and Sentinel-2B. Both of which are operated by the European Space Agency (<a href="https://en.wikipedia.org/wiki/European_Space_Agency">ESA</a>). The task is to gather multi-spectral data for climate change, agriculture monitoring, and emergency management. The data is published under a free and open data policy, making it valuable for academic purposes.</p>
+<figure>
+        <div>
+            <figure>
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-10-28/Sentinel-2.jpeg" alt="Picture of a Sentinel-2 satellite">
+    
+  
+</figure>
+            </figure>
+        </div>
+    <figcaption><center>Fig 1: A Sentinel-2 satellite<a href="https://www.satimagingcorp.com/satellite-sensors/other-satellite-sensors/sentinel-2a/">(Image from Satellite Imaging Corporation)</a>
+</center></figcaption>
+</figure><p>With both satellites and their large field of view (290km), they can sense most of the earth's land cover every 5 days. 
+The revisit frequency is also called the temporal resolution.
+The spatial resolution is reported as $XX\,\text{m}$, which refers to the length and height of a pixel. So a resolution of 10m would correspond to a single pixel capturing an area of 10m x 10m, or 100m². An example remote sensing image can be seen in the following figure. The Sentinel-2 satellites have a spatial resolution of 10m (four visible and near-infrared), 20m (six red edge and short-wave infrared), and 60m (three atmospheric correction) bands. <a class="citation" href="#Sentinel2SpatialResolution">[1]</a></p>
+<figure>
+        <div>
+            <figure>
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-10-28/landsat-resolution.jpg" alt="Visualization of spatial resolution with 30m band">
+    
+  
+</figure>
+            </figure>
+        </div>
+    <figcaption><center>Example remote sensing image with a 30m spatial resolution (<a href="http://gsp.humboldt.edu/OLM/Courses/GSP_216_Online/lesson3-1/resolution.html#:~:text=Spatial%20resolution%20is%20usually%20reported,side%20of%20a%20single%20pixel.&amp;text=In%20other%20words%2C%20an%20image,that%20is%2030%20meters%20across.">Image from GSP Humboldt</a>)</center></figcaption>
+</figure><p>In total, thirteen bands are sensed, ranging from the visible/near-infrared (VNIR) to the short-wave infrared (SWIR) spectrum. Each band has effectively 16-bits per channel, or as it is commonly referred to in the remote image sensing community, a <em>radiometric resolution</em> of 16-bits. The term <em>radiometric resolution</em> highlights the domain in which the images are used but is no different from <em>bits per channel</em><sup id="fnref-1" class="footnote-ref"><a href="#fn-1">1</a></sup>.</p>
+<p>The following figure shows all thirteen bands grouped by their spatial resolution.
+ESA introduced Band <em>8A</em> in the Sentinel-2 mission as band 08 was too contaminated by water vapor and insensitive to other parameters for some applications. But, the original sensor for band 08 remained in the sensory equipment. 
+The narrowness of band 8A should make the results less noisy towards water vapor but still be wide enough for most applications <a class="citation" href="#Sentinel2Heritage">[2]</a>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">sentinel_band_data</span><span class="p">)</span><span class="o">.</span><span class="n">mark_rect</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">"start:Q"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Wavelength in nm"</span><span class="p">),</span>
+    <span class="n">x2</span><span class="o">=</span><span class="s2">"end:Q"</span><span class="p">,</span>
+<span class="c1">#     color=alt.Color("Band", scale=alt.Scale(scheme="category20")),</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s2">"Color"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">Tooltip</span><span class="p">(</span><span class="s2">"Band:O"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Band"</span><span class="p">),</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">Tooltip</span><span class="p">(</span><span class="s2">"Usage"</span><span class="p">),</span> 
+        <span class="n">alt</span><span class="o">.</span><span class="n">Tooltip</span><span class="p">(</span><span class="s2">"Central Wavelength"</span><span class="p">),</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">Tooltip</span><span class="p">(</span><span class="s2">"Spatial Resolution"</span><span class="p">),</span> 
+    <span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">transform_calculate</span><span class="p">(</span>
+    <span class="n">start</span><span class="o">=</span><span class="s2">"datum['Central Wavelength'] - 1/2 * datum['Bandwidth']"</span><span class="p">,</span>
+    <span class="n">end</span><span class="o">=</span><span class="s2">"datum['Central Wavelength'] + 1/2 * datum['Bandwidth']"</span>
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">600</span>
+<span class="p">)</span><span class="o">.</span><span class="n">facet</span><span class="p">(</span>
+    <span class="n">row</span><span class="o">=</span><span class="s2">"Spatial Resolution"</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+<div id="altair-viz-376bc43c7d9643bfb50faaf56634f82f"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-376bc43c7d9643bfb50faaf56634f82f") {
+      outputDiv = document.getElementById("altair-viz-376bc43c7d9643bfb50faaf56634f82f");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-db9f70adba471f174030643a7ad8ef04"}, "facet": {"row": {"type": "nominal", "field": "Spatial Resolution"}}, "spec": {"mark": "rect", "encoding": {"color": {"type": "nominal", "field": "Color", "scale": null}, "tooltip": [{"type": "ordinal", "field": "Band", "title": "Band"}, {"type": "nominal", "field": "Usage"}, {"type": "quantitative", "field": "Central Wavelength"}, {"type": "nominal", "field": "Spatial Resolution"}], "x": {"type": "quantitative", "field": "start", "title": "Wavelength in nm"}, "x2": {"field": "end"}}, "height": 100, "transform": [{"calculate": "datum['Central Wavelength'] - 1/2 * datum['Bandwidth']", "as": "start"}, {"calculate": "datum['Central Wavelength'] + 1/2 * datum['Bandwidth']", "as": "end"}], "width": 600}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-db9f70adba471f174030643a7ad8ef04": [{"Band": "01", "Central Wavelength": 443, "Bandwidth": 21, "Spatial Resolution": "30m", "Usage": "Aerosols", "Color": "lightblue"}, {"Band": "02", "Central Wavelength": 492, "Bandwidth": 66, "Spatial Resolution": "10m", "Usage": "Blue Channel (RGB)", "Color": "navy"}, {"Band": "03", "Central Wavelength": 560, "Bandwidth": 36, "Spatial Resolution": "10m", "Usage": "Green Channel (RGB)", "Color": "green"}, {"Band": "04", "Central Wavelength": 665, "Bandwidth": 31, "Spatial Resolution": "10m", "Usage": "Red Channel (RGB)", "Color": "red"}, {"Band": "05", "Central Wavelength": 704, "Bandwidth": 15, "Spatial Resolution": "20m", "Usage": "Vegetation Red-Edge", "Color": "salmon"}, {"Band": "06", "Central Wavelength": 740, "Bandwidth": 15, "Spatial Resolution": "20m", "Usage": "Vegetation Red-Edge", "Color": "lightcoral"}, {"Band": "07", "Central Wavelength": 780, "Bandwidth": 20, "Spatial Resolution": "20m", "Usage": "Vegetation Red-Edge", "Color": "palevioletred"}, {"Band": "08", "Central Wavelength": 833, "Bandwidth": 106, "Spatial Resolution": "10m", "Usage": "Vegetation Red-Edge", "Color": "darkred"}, {"Band": "08a", "Central Wavelength": 865, "Bandwidth": 21, "Spatial Resolution": "20m", "Usage": "Vegetation Red-Edge", "Color": "indianred"}, {"Band": "09", "Central Wavelength": 944, "Bandwidth": 20, "Spatial Resolution": "30m", "Usage": "Water-Vapour", "Color": "lightsteelblue"}, {"Band": "10", "Central Wavelength": 1375, "Bandwidth": 31, "Spatial Resolution": "30m", "Usage": "Cirrus", "Color": "lightgray"}, {"Band": "11", "Central Wavelength": 1612, "Bandwidth": 91, "Spatial Resolution": "20m", "Usage": "Snow/Ice/Cloud Discrimination", "Color": "gray"}, {"Band": "12", "Central Wavelength": 2195, "Bandwidth": 175, "Spatial Resolution": "20m", "Usage": "Snow/Ice/Cloud Discrimination", "Color": "darkgray"}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Everyone can register on <a href="https://scihub.copernicus.eu/">scihub.copernicus.eu</a> and search for remote sensing imagery.
+The images, also called tiles or granules, from the Sentinel-2 mission sense an area of 100km² and are ~600MB in size. <a class="citation" href="#Sentinel2Products">[3]</a> The Copernicus program provides two types of data for public usage:</p>
+<ul>
+<li>L2A (Level 2A with atmospheric correction)</li>
+<li>L1C (Level 1C without atmospheric correction)</li>
+</ul>
+<p>Applying atmospheric correction algorithms transform a so-called TOA (Top Of Atmosphere) to a BOA (Bottom Of Atmosphere) image.
+If one is interested in the surface reflectance values, or more generally on the objects on the ground, the L2A data should be preferred. In the case of missing L2A data, the <a href="https://earth.esa.int/web/sentinel/toolboxes/sentinel-2">Sentinel-2 toolbox</a> can be used to generate L2A from L1C images.</p>
+<figure>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center">
+        <div>
+            <figure id="Fig2a">
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-10-28/T59GPP_20200119T222541_TCI.jpg" alt="Sentinel-2 example image (true-color)">
+    
+  
+</figure>
+            <figcaption><center>a) True-color image</center></figcaption>
+            </figure>
+        </div>
+        <div>
+            <figure id="Fig2b">
+<figure>
+  
+<img class="docimage" src="/master-thesis-blog/images/copied_from_nb/2020-10-28/T59GPP_20200119T222541_FalseColor.jpg" alt="Sentinel-2 example image (false-color)">
+    
+  
+</figure>
+            <figcaption><center>b) False-color composition</center></figcaption>
+            </figure>
+        </div>
+    </div>
+    <figcaption><center>Fig 2: Sentinel-2 example image</center></figcaption>
+</figure><p><a href="#Fig2a">Fig. 2a</a> shows the visible bands of a randomly selected image with low cloud coverage. Remote sensing images that show the visible bands, like classic RGB images are called <em>true-color images</em> (TCI).
+To visualize the data from the other bands one can:</p>
+<ol>
+<li>Show each band independently as a grayscale image</li>
+<li>Map three bands to the classic <em>RGB</em> channels of an image (called false-color image/composite)</li>
+</ol>
+<p><a href="#Fig2b">Fig. 2b</a> shows a popular false-color composite, using the bands 08, 04, and 03.
+With the band in the near-infrared spectrum (band 08) as the <em>red</em> channel, the healthy green vegetation will light up in bright red. As the bare soil has a low reflectance in the near-infrared spectrum, it will range from tan to turquoise.
+With the <a href="https://apps.sentinel-hub.com/eo-browser/?zoom=10&amp;lat=41.89972&amp;lng=12.49969&amp;themeId=DEFAULT-THEME">EO Browser</a>, you can interact with satellite imagery and false-color composites without requiring you to download any images or manually applying transformations on different spectral bands.
+</p>
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>I highly recommend playing around with the <a href="https://apps.sentinel-hub.com/eo-browser/?zoom=10&amp;lat=41.89972&amp;lng=12.49969&amp;themeId=DEFAULT-THEME">EO Browser</a> as it is the easiest way to interact with the various bands.
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To get most of the high-volume data from remote sensing images, one can employ deep-learning.
+Deep-learning has become the state-of-the-art solution to complex computer vision applications.
+Usually, deep-learning models are used on classic RGB images, but they also seem to be promising for these multi-spectral images. To train and test these models, researchers need large, high-quality datasets.
+The data assembly was not a problem, thanks to the open data policy of the Sentinel-2 imagery.
+Sumbul <em>et. al</em> <a class="citation" href="#Sumbul2019">[4]</a> were able to assemble and published such a dataset, <a href="http://bigearth.net/">BigEarthNet</a>.</p>
+<h2 id="BigEarthNet">
+<a class="anchor" href="#BigEarthNet" aria-hidden="true"><span class="octicon octicon-link"></span></a>BigEarthNet<a class="anchor-link" href="#BigEarthNet"> </a>
+</h2>
+<p>The BigEarthNet archive uses Sentinel-2 tiles that are distributed over 10 countries from Europe <sup id="fnref-2" class="footnote-ref"><a href="#fn-2">2</a></sup>.
+Only tiles with a cloud cover percentage under 1% containing no missing/faulty pixels were considered. The tiles were then split into smaller non-overlapping patches for further processing and publication.
+In total, the dataset consists of 590,326 patches, each of which covers a region of 1.200m x 1.200m.
+Due to the different spatial resolution of the various bands, the patches have different sizes. 120 x 120 pixels for 10m bands, 60 x 60 pixels for 20m bands, and 20 x 20 pixels for 60m bands.</p>
+<p>As the archive is based on Sentinel-2 images, the radiometric resolution is 16-bits.
+The time-frame for the acquisition dates were between June 2017 $-$ June 2018. Due to the winter months generally having
+higher cloud coverages, the winter season has the fewest samples, as seen in the following chart.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">season_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">{</span><span class="s2">"Season"</span><span class="p">:</span> <span class="s2">"Autumn"</span><span class="p">,</span> <span class="s2">"# Images"</span><span class="p">:</span> <span class="mi">154_943</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"Season"</span><span class="p">:</span> <span class="s2">"Winter"</span><span class="p">,</span> <span class="s2">"# Images"</span><span class="p">:</span> <span class="mi">117_156</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"Season"</span><span class="p">:</span> <span class="s2">"Spring"</span><span class="p">,</span> <span class="s2">"# Images"</span><span class="p">:</span> <span class="mi">189_276</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"Season"</span><span class="p">:</span> <span class="s2">"Summer"</span><span class="p">,</span> <span class="s2">"# Images"</span><span class="p">:</span> <span class="mi">128_951</span><span class="p">},</span>
+<span class="p">])</span>
+
+<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">season_data</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">"Season"</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">"# Images"</span><span class="p">,</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">Tooltip</span><span class="p">(</span><span class="s2">"Season"</span><span class="p">),</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">Tooltip</span><span class="p">(</span><span class="s2">"# Images"</span><span class="p">),</span> 
+    <span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">300</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+<div id="altair-viz-c68369415fe24781bea53efba8e2f2c2"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-c68369415fe24781bea53efba8e2f2c2") {
+      outputDiv = document.getElementById("altair-viz-c68369415fe24781bea53efba8e2f2c2");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-5f998322fef9fae3a2f186fbce23f9c7"}, "mark": "bar", "encoding": {"tooltip": [{"type": "nominal", "field": "Season"}, {"type": "quantitative", "field": "# Images"}], "x": {"type": "nominal", "field": "Season"}, "y": {"type": "quantitative", "field": "# Images"}}, "width": 300, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-5f998322fef9fae3a2f186fbce23f9c7": [{"Season": "Autumn", "# Images": 154943}, {"Season": "Winter", "# Images": 117156}, {"Season": "Spring", "# Images": 189276}, {"Season": "Summer", "# Images": 128951}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The authors identified <a href="http://bigearth.net/#downloads">70,987 patches</a> that are fully covered by clouds, cloud shadows, and seasonal snow. They provide CSV files to exclude these patches if desired and recommend to do so if neural networks are only trained on the BigEarthNet dataset.</p>
+<p>The last point to note is that not all bands are used in this dataset; band 10 is omitted. Band 10 does not include any surface-level information, as it is mainly used to detect cirrus clouds <a class="citation" href="#Sentinel2CloudMasks">[5]</a>. These clouds form at high altitudes and are transparent or semi-transparent in the optical bands but have a high impact on the <em>original</em> spectral reflectance <a class="citation" href="#Qiu2020">[6]</a>. For the data preprocessing step, the 10th band is a significant indicator of the data quality but does not hold any information for down-stream processes. 
+To use the correct terminology, band 10 is important for TOA analysis and the conversion from TOA to BOA images.
+However, the other 60m bands used for atmospheric correction were not removed.</p>
+<p>With that said, we have covered all the essential details of the BigEarthNet archive. But, before we move on and use the dataset, let's take a short recap.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Summary">
+<a class="anchor" href="#Summary" aria-hidden="true"><span class="octicon octicon-link"></span></a>Summary<a class="anchor-link" href="#Summary"> </a>
+</h2>
+<p>The most important features of the Sentinel-2 earth-observation mission are:</p>
+<ul>
+<li>2 satellites (Sentinel-2A/Sentinel-2B)</li>
+<li>Temporal resolution of 5 days</li>
+<li>Spatial resolution of 10m, 20m, and 30m (depending on the specific band)</li>
+<li>Radiometric resolution of 16-bits</li>
+<li>Senses 13 bands, from the visible/near-infrared to the short-wave infrared spectrum</li>
+<li>Open data policy</li>
+</ul>
+<p>Thanks to the open data policy, researchers were able to create <em>BigEarthNet</em>, a large, freely available multi-spectral dataset for deep-learning. The significant properties are:</p>
+<ul>
+<li>Provides ~590,000 patches<ul>
+<li>Each patch covers a region of 1.200m x 1.200m</li>
+</ul>
+</li>
+<li>Various resolutions defined by Sentinel-2 specs</li>
+<li>Does not include band 10, as it does not contain surface-level information</li>
+<li>Provides CSV with all <em>uninformative</em> patches (patch with only snow/clouds)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References">
+<a class="anchor" href="#References" aria-hidden="true"><span class="octicon octicon-link"></span></a>References<a class="anchor-link" href="#References"> </a>
+</h2>
+<p></p>
+<ol class="bibliography">
+<li><span id="Sentinel2SpatialResolution">[1]European Space Agency, “Sentinel-2 spatial resolution.” 12-Oct-2020 [Online]. Available at: https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial</span></li>
+<li><span id="Sentinel2Heritage">[2]European Space Agency, “Sentinel-2 Heritage.” 12-Oct-2020 [Online]. Available at: https://sentinel.esa.int/web/sentinel/missions/sentinel-2/heritage</span></li>
+<li><span id="Sentinel2Products">[3]European Space Agency, “Sentinel-2 Data Products.” 12-Oct-2020 [Online]. Available at: https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/product-types</span></li>
+<li><span id="Sumbul2019">[4]G. Sumbul, M. Charfuelan, B. Demir, and V. Markl, “Bigearthnet: A Large-Scale Benchmark Archive for Remote Sensing Image Understanding,” in <i>IEEE International Geoscience and Remote Sensing Symposium</i>, 2019 [Online]. Available at: http://bigearth.net/static/documents/BigEarthNet_IGARSS_2019.pdf</span></li>
+<li><span id="Sentinel2CloudMasks">[5]European Space Agency, “Sentinel-2 cloud masks.” 12-Oct-2020 [Online]. Available at: https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-1c/cloud-masks</span></li>
+<li><span id="Qiu2020">[6]S. Qiu, Z. Zhu, and C. E. Woodcock, “Cirrus clouds that adversely affect Landsat 8 images: What are they and how to detect them?,” <i>Remote Sensing of Environment</i>, no. Q, Sep. 2020 [Online]. Available at: https://www.sciencedirect.com/science/article/pii/S0034425720302546</span></li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="footnotes"><p id="fn-1">1. There is some ambiguity of the actual <em>radiometric resolution</em>. The <a href="https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/radiometric">official website</a> writes a radiometric resolution of 12-bits per channel, but the information is out of date. <a href="https://gis.stackexchange.com/questions/233874/what-is-the-range-of-values-of-sentinel-2-level-2a-images">Inspection of images</a> starting around 2016 reveals a resolution of at least 15-bits. But the full 16-bit range is used to encode special values. As the data will always end-up using 2 Bytes for storage (16-bits), it is commonly treated as a 16-bit image. I tried my best to comprehend the data range fully, but there are still some open questions. I am trying to answer these questions and have an open discussion on <a href="https://gis.stackexchange.com/questions/376711/understanding-value-range-for-sentinel-2-images">gis.stackexchange.com</a>. Feel free to join the discussion!<a href="#fnref-1" class="footnote footnotes">↩</a></p></div>
+<p></p>
+<div class="footnotes"><p id="fn-2">2. These 10 countries are: Austria, Belgium, Finland, Ireland, Kosovo, Lithuania, Luxembourg, Portugal, Serbia, Switzerland<a href="#fnref-2" class="footnote footnotes">↩</a></p></div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="kai-tub/master-thesis-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/master-thesis-blog/images/2020/10/28/bigearthnet-dataset.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/master-thesis-blog/"></data>
+
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col">
+                <p>
+                    <a href="https://www.buymeacoffee.com/kaitub" target="_blank"><img
+                            src="https://cdn.buymeacoffee.com/buttons/v2/arial-blue.png" alt="Buy Me A Coffee"
+                            width="162px" height="40px" /></a>
+                </p>
+                <p class="feed-subscribe">
+                    <a href="/master-thesis-blog/feed.xml">
+                        <!-- <svg class="svg-icon orange"> -->
+                        <!-- <use xlink:href="/master-thesis-blog/assets/minima-social-icons.svg#rss"></use> -->
+                        <img src="/master-thesis-blog/images/rss.png" height="30px" />
+                        <!-- </svg> -->
+                        <span>Subscribe</span>
+                    </a>
+                </p>
+            </div>
+            <div class="footer-col">
+                <p>Remote image sensing and self-supervision master thesis blog by Kai Norman Clasen</p>
+            </div>
+        </div>
+
+        <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/kai-tub" title="kai-tub"><svg class="svg-icon grey"><use xlink:href="/master-thesis-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/kai-norman-clasen" title="kai-norman-clasen"><svg class="svg-icon grey"><use xlink:href="/master-thesis-blog/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/kai_tub" title="kai_tub"><svg class="svg-icon grey"><use xlink:href="/master-thesis-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+    </div>
+
+</footer></body>
+
+</html>
